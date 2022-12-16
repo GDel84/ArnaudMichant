@@ -5,4 +5,4 @@ when@dev:
 
 index:
     path: /
-    controller: App\Controller\DefaultController::index
+    controller: App\Controller\DefaultController::accueil

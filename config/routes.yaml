@@ -1,9 +1,16 @@
+#controllers:
+#  resource: ../src/Controller/
+#  type: annotation
+#
+#kernel:
+#  resource: ../src/Kernel.php
+#  type: annotation
+
 controllers:
-    resource:
-        path: ../src/Controller/
-        namespace: App\Controller
+    resource: ../src/Controller/
     type: attribute
 
-index:
+
+accueil:
     path: /
-    controller: App\Controller\DefaultController::index
+    controller: App\Controller\PublicController::accueil
