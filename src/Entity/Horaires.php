@@ -18,10 +18,10 @@ class Horaires
     private ?string $DayWeek = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $hourly = null;
+    private ?int $hourly = null;
 
-    #[ORM\Column(type: Types::TIME_MUTABLE, nullable: true)]
-    private ?\DateTimeInterface $horaire = null;
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?int $hourlyAfter = null;
 
     public function getId(): ?int
     {
@@ -48,6 +48,18 @@ class Horaires
     public function sethourly(?\DateTimeInterface $hourly): self
     {
         $this->hourly = $hourly;
+
+        return $this;
+    }
+
+    public function getHourlyAfter(): ?string
+    {
+        return $this->hourlyAfter;
+    }
+
+    public function setHourlyAfter(?string $hourlyAfter): self
+    {
+        $this->hourlyAfter = $hourlyAfter;
 
         return $this;
     }
