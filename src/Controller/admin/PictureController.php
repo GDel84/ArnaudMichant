@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class PictureController extends AbstractController
 {
-    #[Route('/picture', name: 'app_picture')]
+    #[Route('/admin/picture', name: 'app_picture')]
     public function index(): Response
     {
         return $this->render('picture/admin-picture.html.twig', [

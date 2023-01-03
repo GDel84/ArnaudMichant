@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ScheduleController extends AbstractController
 {
-    #[Route('/schedule', name: 'app_schedule')]
+    #[Route('/admin/schedule', name: 'app_schedule')]
     public function index(): Response
     {
         return $this->render('schedule/admin-schedule.html.twig', [

@@ -16,4 +16,11 @@ class DefaultController extends AbstractController
             'accueil_name' => 'PublicController',
         ]);
     }
+    #[Route('/carte', name: 'carte')]
+    public function contacter(): Response
+    {
+        return $this->render('carte.html.twig', [
+            'carte_name' => 'PublicController',
+        ]);
+    }
 }
