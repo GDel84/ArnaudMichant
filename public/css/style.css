@@ -2,18 +2,15 @@
 
 body {
   font-family: Libre Caslon Text;
-  background-color: #FFAB91;
+  background-color: #D2B48C;
+  z-index: 2;
+  margin: 0;
 }
 
-.body-text {
-  padding-top: 20vh;
-  text-align: center;
-  position: relative;
-}
 
 .hamburger-icon {
   position: absolute;
-  z-index: 1;
+  z-index: 100;
   top: 5vh;
   left: 5vw;
   padding-bottom: 2vh;
@@ -27,11 +24,13 @@ body {
   margin: 5px 0px 5px 0px;
   transition: 0.7s ease-in-out;
   transform: none;
+  z-index: 10;
 }
 
 #openmenu:checked ~ .menu-pane {
   left: -5vw;
   transform: translateX(-5vw);
+  z-index: 10;
 }
 
 #openmenu:checked ~ .body-text {
@@ -68,7 +67,7 @@ div.menu-pane {
 
 .menu-pane p {
   color: black;
-  font-size: 0.6em;
+  font-size: 0.5em;
 }
 
 .menu-pane nav {
@@ -80,7 +79,7 @@ div.menu-pane {
 }
 
 .menu-pane ul {
-  padding: 10%;
+  padding: 15%;
   display: inline-block;
 }
 
@@ -153,4 +152,14 @@ input.hamburger-checkbox {
   width: 10vw;
   opacity: 0;
   height: 6vh;
+}
+.body-text {
+  text-align: center;
+  position: absolute;
+  z-index: 2;
+}
+.imgfont{
+width: auto;
+height: 20%;
+position: relative;
 }
