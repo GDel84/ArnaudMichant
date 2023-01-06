@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Libre+Caslon+Text:400,700&display=swap');
-
+*, ::before, ::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 body {
   font-family: Libre Caslon Text;
   background-color: #D2B48C;
@@ -56,7 +60,7 @@ display: none;
 }
 
 div.menu-pane {
-  background-color: #000;
+  background-color: #712E1E;
   position: absolute;
   transform: translateX(-105vw);
   transform-origin: (0, 0);
@@ -153,13 +157,38 @@ input.hamburger-checkbox {
   opacity: 0;
   height: 6vh;
 }
-.body-text {
-  text-align: center;
-  position: absolute;
-  z-index: 2;
+/*-------header-----*/
+.header-text {
+  width: auto;
+  height: 150px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  background-color: #712E1E;
 }
-.imgfont{
-width: auto;
-height: 20%;
-position: relative;
+h1{
+  text-align: center;
+}
+/*---------La Galerie-----------*/
+
+.gallery {
+  max-width: 1300px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2vmin;
+  padding: 0 14px;
+}
+.gallery::after {
+  content:'';
+  display:block;
+  flex-grow: 10;
+}
+.gallery li {
+  list-style-type: none;
+  height: 250px;
+  flex-grow: 1;
+}
+.gallery img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
