@@ -2,8 +2,9 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Horaires;
-use App\Form\HorairesFormType;
+use App\Entity\Schedule;
+use App\Form\ScheduleFormType;
+use App\Repository\ScheduleRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,19 +15,19 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 class ScheduleController extends AbstractController
 {
     #[Route('/admin/schedule', name: 'admin-schedule')]
-    public function index(): Response
+    public function index(ScheduleRepository $horaireRepo): Response
     {
         return $this->render('admin/schedule/admin-schedule.html.twig', [
-            'controller_name' => 'ScheduleController',
+            'schedules' => $horaireRepo->findAll(),
         ]);
     }
 
-    #[Route('/admin/schedule/create/', name: 'admin_schedule_create')]
+    #[Route('/admin/schedule/create/', name: 'schedule-create')]
         public function CreateSchedule(ManagerRegistry $doctrine, Request $request, SluggerInterface $slugger)
         {
-            $horaires = new Horaires;
+            $horaires = new Schedule;
     
-            $form = $this->createForm(HorairesFormType::class, $horaires);
+            $form = $this->createForm(ScheduleFormType::class, $horaires);
     
             $form->handleRequest($request);
     
@@ -44,9 +45,9 @@ class ScheduleController extends AbstractController
     #[Route('/modifier/{id}', name: 'admin-schedule-edit')]
     public function ModifHoraire(ManagerRegistry $doctrine, $id, Request $request)
     {
-        $horaireRepo = $doctrine->getRepository(Horaires::class);
+        $horaireRepo = $doctrine->getRepository(Schedule::class);
         $horaire = $horaireRepo->findOneBy(['id'=>$id]);
-        $form = $this->createForm(HorairesAdminType::class, $horaire);
+        $form = $this->createForm(ScheduleFormType::class, $horaire);
 
         $form->handleRequest($request);
 
