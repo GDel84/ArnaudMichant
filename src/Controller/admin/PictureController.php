@@ -15,8 +15,8 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 
 class PictureController extends AbstractController
 {
-    #[Route('/admin/picture/create', name: 'admin-picture')]
-    public function picture(SluggerInterface $slugger, Request $request): Response
+    #[Route('/admin/picture/create', name: 'picture-create')]
+    public function picture(SluggerInterface $slugger, Request $request, ManagerRegistry $doctrine): Response
     {
         $pic = new Photo();
         $form = $this->createForm(PictureFormType::class, $pic);
@@ -45,6 +45,10 @@ class PictureController extends AbstractController
                 // updates the 'brochureFilename' property to store the PDF file name
                 // instead of its contents
                 $pic->setPicture($newFilename);
+
+                $em = $doctrine->getManager();
+                $em->persist($pic);
+                $em->flush();
 
                 $pic->setPicture(
                     new File($this->getParameter('picture_directory').'/'.$pic->getPicture())

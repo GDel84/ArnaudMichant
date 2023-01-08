@@ -1,11 +1,13 @@
 {% extends 'admin/baseAdmin.html.twig' %}
 {% block body %}
+<div class="form-add">
 <h1>Ajouté une photo</h1>
+
 
 {{ form_start(form) }}
     {# ... #}
 
     {{ form_row(form) }}
 {{ form_end(form) }}
-
+</div>
 {% endblock %} 
