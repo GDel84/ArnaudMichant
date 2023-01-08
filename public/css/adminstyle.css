@@ -105,3 +105,17 @@
     box-shadow: 35px -35px 0 10px var(--white);
     pointer-events: none;
   }
+
+  /*--------formulaire -------------*/
+  body{
+    text-align: center;
+    position: relative;
+  }
+  .form-add{
+    width: 400px;
+    height: auto;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  }
+ 
+
+ 
