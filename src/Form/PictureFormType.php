@@ -34,6 +34,7 @@ class PictureFormType extends AbstractType
                         'mimeTypes' => [
                             'image/jpg',
                             'image/jpeg',
+                            'image/png',
                         ],
                         'mimeTypesMessage' => 'Vérifiez que vos image soi au format jpg ou jpeg',
                     ])
