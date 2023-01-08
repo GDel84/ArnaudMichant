@@ -20,8 +20,8 @@ class Formules
     #[ORM\Column(nullable: true)]
     private ?float $Prices = null;
 
-    #[ORM\ManyToOne(inversedBy: 'MenusFormules')]
-    private ?Menus $menus = null;
+    #[ORM\ManyToOne(inversedBy: 'CarteFormules')]
+    private ?Carte $CarteFormules = null;
 
     public function getId(): ?int
     {
@@ -52,15 +52,16 @@ class Formules
         return $this;
     }
 
-    public function getMenus(): ?Menus
+    public function getCarteFormules(): ?Carte
     {
-        return $this->menus;
+        return $this->CarteFormules;
     }
 
-    public function setMenus(?Menus $menus): self
+    public function setCarteFormules(?Carte $CarteFormules): self
     {
-        $this->menus = $menus;
+        $this->CarteFormules = $CarteFormules;
 
         return $this;
     }
+
 }
