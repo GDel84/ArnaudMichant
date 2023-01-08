@@ -2,4 +2,27 @@
 {% block body %}
 <h1>Horraire du restautant</h1>
 
+<a href="{{ path("schedule-create") }}" type="button" class="btn btn-outline-primary"><img src="../photo/icons8-ajouter-une-propriété-48.png" alt="ajouter un horraire"></a>
+
+<div class="deco left">
+ <table class="table table-striped-columns">        
+
+        <thead> 
+            <tr>
+            <th>Jour</th>
+            <th>Midi</th>
+            <th>Soir</th>
+            </tr> 
+        </thead>
+        {% for schedule in schedules %}
+        <tbody> 
+            <tr>
+            <td>{{schedule.week}}</td>
+            <td>{{schedule.scheduleMoon}}</td>
+            <td>{{schedule.scheduleNight}}</td>
+            </tr>
+        {% endfor %}
+        </tbody> 
+    </table>
+</div>
 {% endblock %} 
