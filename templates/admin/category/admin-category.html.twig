@@ -1,20 +1,30 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Hello CategoryController!{% endblock %}
-
+{% extends 'admin/baseAdmin.html.twig' %}
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+<h1>Les categories de la carte</h1>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+<a href="{{ path("category-create") }}" type="button" class="btn btn-outline-primary"><img src="../photo/icons8-ajouter-une-propriété-48.png" alt="ajouter une categorie"></a>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/xampp/ArnaudMichant/src/Controller/CategoryController.php'|file_link(0) }}">src/Controller/CategoryController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/xampp/ArnaudMichant/templates/category/index.html.twig'|file_link(0) }}">templates/category/index.html.twig</a></code></li>
-    </ul>
+<div class="deco left">
+ <table class="table table-striped-columns">        
+
+        <thead> 
+            <tr>
+            <th>titre</th>
+            <th>Description</th>
+            <th>Prix</th>
+            <th>manytoone</th>
+            </tr> 
+        </thead>
+        {% for category in categorys %}
+        <tbody> 
+            <tr>
+            <td>{{category.week}}</td>
+            <td>{{category.scheduleMoon}}</td>
+            <td>{{category.scheduleNight}}</td>
+            <td>{{CategoryProduct}}</td>
+            </tr>
+        {% endfor %}
+        </tbody> 
+    </table>
 </div>
-{% endblock %}
+{% endblock %} 

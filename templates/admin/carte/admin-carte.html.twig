@@ -1,20 +1,25 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Hello CarteController!{% endblock %}
-
+{% extends 'admin/baseAdmin.html.twig' %}
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+<h1>La Carte</h1>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+<a href="{{ path("carte-create") }}" type="button" class="btn btn-outline-primary"><img src="../photo/icons8-ajouter-une-propriété-48.png" alt="ajouter un horraire"></a>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/xampp/ArnaudMichant/src/Controller/CarteController.php'|file_link(0) }}">src/Controller/CarteController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/xampp/ArnaudMichant/templates/carte/index.html.twig'|file_link(0) }}">templates/carte/index.html.twig</a></code></li>
-    </ul>
+<div class="deco left">
+ <table class="table table-striped-columns">        
+
+        <thead> 
+            <tr>
+            <th>Nom</th>
+            </tr> 
+        </thead>
+        {% for carte in cartes %}
+        <tbody> 
+            <tr>
+            <td>{{carte.title}}</td>
+
+            </tr>
+        {% endfor %}
+        </tbody> 
+    </table>
 </div>
-{% endblock %}
+{% endblock %} 
