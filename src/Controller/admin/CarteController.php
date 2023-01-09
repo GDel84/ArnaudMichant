@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Carte;
+use App\Repository\CarteRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -12,14 +13,14 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class CarteController extends AbstractController
 {
-    #[Route('/admin/carte', name: 'carte')]
-    public function index(): Response
+    #[Route('/admin/carte', name: 'admin-carte')]
+    public function carte(CarteRepository $carteRepo): Response
     {
-        return $this->render('carte/admin-carte.html.twig', [
-            'controller_name' => 'CarteController',
+        return $this->render('admin/carte/admin-carte.html.twig', [
+            'cartes' => $carteRepo->findAll(),
         ]);
     }
-    #[Route('admin/category/create/', name: 'category-create')]
+    #[Route('admin/carte/create/', name: 'admin-carte-create')]
     public function categoryAdd(ManagerRegistry $doctrine, Request $request)
     {
         $carte = new Carte;
@@ -37,7 +38,7 @@ class CarteController extends AbstractController
         ]);
     }
 
-    #[Route('admin/carte/edit/{id}', name: 'carte-edit')]
+    #[Route('admin/carte/edit/{id}', name: 'admin-carte-edit')]
     public function carteEdit(ManagerRegistry $doctrine, $id, Request $request)
     {
         $carteRepo = $doctrine->getRepository(Carte::class);
@@ -58,7 +59,7 @@ class CarteController extends AbstractController
             'form' => $form->createView()
         ]);
     }
-    #[Route('/admin/carte/delete/{id}', name: 'carte-delete')]
+    #[Route('/admin/carte/delete/{id}', name: 'admin-carte-delete')]
         public function carteDelete(Carte $carte, ManagerRegistry $doctrine): RedirectResponse
         {
             $em = $doctrine->getManager();

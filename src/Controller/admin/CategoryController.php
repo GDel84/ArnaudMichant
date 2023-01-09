@@ -14,16 +14,16 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class CategoryController extends AbstractController
 {
-    #[Route('/admin/category', name: 'category')]
+    #[Route('/admin/category', name: 'admin-category')]
     public function index(CategoryRepository $categoryRepo): Response
     {
         return $this->render('category/admin-category.html.twig', [
-            'category' => $categoryRepo->finAll(),
+            'categorys' => $categoryRepo->finAll(),
         ]);
     }
 
-    #[Route('admin/category/edit/{id}', name: 'category-edit')]
-    public function categoryAdd(ManagerRegistry $doctrine, $id, Request $request)
+    #[Route('admin/category/create', name: 'admin-category-create')]
+    public function categoryCreate(ManagerRegistry $doctrine, Request $request)
     {
         $category = new Category;
         $form = $this->createForm(CategoryFormType::class, $category);
@@ -40,7 +40,7 @@ class CategoryController extends AbstractController
         ]);
     }
 
-    #[Route('admin/category/edit/{id}', name: 'category-edit')]
+    #[Route('admin/category/edit/{id}', name: 'admin-category-edit')]
     public function categoryEdit(ManagerRegistry $doctrine, $id, Request $request)
     {
         $categoryRepo = $doctrine->getRepository(Category::class);
@@ -61,7 +61,7 @@ class CategoryController extends AbstractController
             'form' => $form->createView()
         ]);
     }
-    #[Route('/admin/category/delete/{id}', name: 'category-delete')]
+    #[Route('/admin/category/delete/{id}', name: 'admin-category-delete')]
         public function categoryDelete(Category $category, ManagerRegistry $doctrine): RedirectResponse
         {
             $em = $doctrine->getManager();

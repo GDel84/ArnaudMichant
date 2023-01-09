@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Photo;
 use App\Form\PictureFormType;
+use App\Repository\PhotoRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
@@ -15,8 +16,15 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 
 class PictureController extends AbstractController
 {
-    #[Route('/admin/picture/create', name: 'picture-create')]
-    public function picture(SluggerInterface $slugger, Request $request, ManagerRegistry $doctrine): Response
+    #[Route('/admin/picture', name: 'admin-picture')]
+    public function picture(PhotoRepository $picRepo): Response
+    {
+        return $this->render('admin/picture/admin-picture.html.twig', [
+            'pictures' => $picRepo->findAll(),
+        ]);
+    }
+    #[Route('/admin/picture/create', name: 'admin-picture-create')]
+    public function pictureCreate(SluggerInterface $slugger, Request $request, ManagerRegistry $doctrine): Response
     {
         $pic = new Photo();
         $form = $this->createForm(PictureFormType::class, $pic);
@@ -53,6 +61,7 @@ class PictureController extends AbstractController
                 $pic->setPicture(
                     new File($this->getParameter('picture_directory').'/'.$pic->getPicture())
                 );
+            return $this->redirectToRoute('admin-picture');
             }
 
             // ... persist the $product variable or any other work
@@ -102,7 +111,7 @@ class PictureController extends AbstractController
                 $em->persist($pic);
                 $em->flush();
             }
-            return $this->redirectToRoute('admin');
+            return $this->redirectToRoute('admin-picture');
         }
         
         return $this->render('admin/picture/admin-picture-edit.html.twig', [
