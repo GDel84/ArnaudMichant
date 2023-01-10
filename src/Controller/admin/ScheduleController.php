@@ -42,7 +42,7 @@ class ScheduleController extends AbstractController
             ]);
         }
 
-    #[Route('/modifier/{id}', name: 'admin-schedule-edit')]
+    #[Route('/admin/schedule/modifier/{id}', name: 'admin-schedule-edit')]
     public function ModifHoraire(ManagerRegistry $doctrine, $id, Request $request)
     {
         $horaireRepo = $doctrine->getRepository(Schedule::class);

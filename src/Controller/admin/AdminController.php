@@ -9,12 +9,11 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AdminController extends AbstractController
 {
-    #[Route('/admin', name: 'app_admin')]
+    #[Route('/admin', name: 'admin')]
     public function index(PhotoRepository $picRepo): Response
     {
         return $this->render('admin/index.html.twig', [
             'pictures' => $picRepo->findAll(),
-            
         ]);
     }
 }
