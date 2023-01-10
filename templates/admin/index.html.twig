@@ -5,7 +5,7 @@
 <h1>rendu photo</h1>
 
 
-<a href="{{ path("picture-create") }}" type="button" class="btn btn-outline-primary"><img src="../photo/icons8-ajouter-une-propriété-48.png" alt="ajouter"></a>
+{# <a href="{{ path("picture-create") }}" type="button" class="btn btn-outline-primary"><img src="../photo/icons8-ajouter-une-propriété-48.png" alt="ajouter"></a> #}
 
 {% for picture in pictures %}
 <section class="section-info" id="infos">
@@ -14,7 +14,7 @@
         <div class="carte-info">
             <div class="container-photo-info">
 
-        <a><img src={{asset('uploads/picture/' ~ pictures.picture)}} width="400px" class="photo"></a>
+        
                 </div>
       
     </div>
