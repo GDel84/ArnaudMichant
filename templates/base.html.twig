@@ -10,12 +10,10 @@
             <link rel="stylesheet" href="{{ asset('css/style.css')}}">
         {% endblock %}
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
     </head>
     <body>
     {% include 'nav.html.twig' %}
         {% block body %}{% endblock %}
+        {% block javascripts %}{{ encore_entry_script_tags('app') }}{% endblock %}
     </body>
 </html>
