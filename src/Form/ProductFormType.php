@@ -13,9 +13,9 @@ class ProductFormType extends AbstractType
     {
         $builder
             ->add('Title')
-            ->add('pictureOrder')
             ->add('description')
             ->add('prices')
+            ->add('Category')
         ;
     }
 

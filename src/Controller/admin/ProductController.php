@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Product;
+use App\Form\ProductFormType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -12,14 +13,14 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ProductController extends AbstractController
 {
-    #[Route('/product', name: 'admin-product')]
+    #[Route('/admin/product', name: 'admin-product')]
     public function index(): Response
     {
         return $this->render('/adminproduct/index.html.twig', [
             'controller_name' => 'produitController',
         ]);
     }
-    #[Route('/admin/product/create/', name: 'product-create')]
+    #[Route('/admin/product/create/', name: 'admin-product-create')]
         public function CreateProduct(ManagerRegistry $doctrine, Request $request)
         {
             $product = new Product;
@@ -33,6 +34,9 @@ class ProductController extends AbstractController
                     $em = $doctrine->getManager();
                     $em->persist($product);
                     $em->flush();
+
+            return $this->redirectToRoute('admin-carte');
+
             }
             return $this->render('/admin/product/admin-product-create.html.twig', [
                 'form' => $form->createView()
@@ -53,7 +57,7 @@ class ProductController extends AbstractController
             $em->persist($horaire);
             $em->flush();
 
-            return $this->redirectToRoute('admin-product');
+            return $this->redirectToRoute('admin-carte');
         }
 
         return $this->render('admin/product/admin-product-edit.html.twig', [
@@ -67,6 +71,6 @@ class ProductController extends AbstractController
             $em->remove($product);
             $em->flush();
 
-        return $this->redirectToRoute("product");
+        return $this->redirectToRoute("admin-carte");
         }
 }

@@ -34,6 +34,9 @@ class CategoryController extends AbstractController
             $em = $doctrine->getManager();
             $em->persist($category);
             $em->flush(); 
+
+            return $this->redirectToRoute('admin-carte');
+
         }
         return $this->render('/admin/category/admin-category-create.html.twig', [
             'form' => $form->createView()
@@ -54,7 +57,7 @@ class CategoryController extends AbstractController
             $em->persist($category);
             $em->flush();
 
-            return $this->redirectToRoute('category');
+            return $this->redirectToRoute('admin-carte');
         }
 
         return $this->render('admin/category/admin-category-edit.html.twig', [
@@ -68,6 +71,6 @@ class CategoryController extends AbstractController
             $em->remove($category);
             $em->flush();
 
-        return $this->redirectToRoute("category");
+        return $this->redirectToRoute("admin-carte");
         }
 }

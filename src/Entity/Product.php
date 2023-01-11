@@ -17,14 +17,15 @@ class Product
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $Title = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?int $pictureOrder = null;
-
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;
 
     #[ORM\Column(nullable: true)]
     private ?float $prices = null;
+
+    #[ORM\ManyToOne(inversedBy: 'products')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Category $Category = null;
 
     public function getId(): ?int
     {
@@ -39,18 +40,6 @@ class Product
     public function setTitle(?string $Title): self
     {
         $this->Title = $Title;
-
-        return $this;
-    }
-
-    public function getPictureOrder(): ?int
-    {
-        return $this->pictureOrder;
-    }
-
-    public function setPictureOrder(?int $pictureOrder): self
-    {
-        $this->pictureOrder = $pictureOrder;
 
         return $this;
     }
@@ -75,6 +64,23 @@ class Product
     public function setPrices(?float $prices): self
     {
         $this->prices = $prices;
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->getTitle();
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->Category;
+    }
+
+    public function setCategory(?Category $Category): self
+    {
+        $this->Category = $Category;
 
         return $this;
     }

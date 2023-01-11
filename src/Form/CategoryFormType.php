@@ -14,8 +14,7 @@ class CategoryFormType extends AbstractType
         $builder
             ->add('Title')
             ->add('Description')
-            ->add('Prices')
-            ->add('CategoryProduct')
+            ->add('IsMenu')
         ;
     }
 

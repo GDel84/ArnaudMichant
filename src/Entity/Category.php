@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CategoryRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -21,10 +23,15 @@ class Category
     private ?string $Description = null;
 
     #[ORM\Column(nullable: true)]
-    private ?float $Prices = null;
+    private ?bool $IsMenu = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    private ?Product $CategoryProduct = null;
+    #[ORM\OneToMany(mappedBy: 'Category', targetEntity: Product::class, orphanRemoval: true)]
+    private Collection $products;
+
+    public function __construct()
+    {
+        $this->products = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -55,26 +62,50 @@ class Category
         return $this;
     }
 
-    public function getPrices(): ?float
+
+    public function isIsMenu(): ?bool
     {
-        return $this->Prices;
+        return $this->IsMenu;
     }
 
-    public function setPrices(?float $Prices): self
+    public function setIsMenu(?bool $IsMenu): self
     {
-        $this->Prices = $Prices;
+        $this->IsMenu = $IsMenu;
 
         return $this;
     }
 
-    public function getCategoryProduct(): ?Product
+    public function __toString()
     {
-        return $this->CategoryProduct;
+        return $this->getTitle();
     }
 
-    public function setCategoryProduct(?Product $CategoryProduct): self
+    /**
+     * @return Collection<int, Product>
+     */
+    public function getProducts(): Collection
     {
-        $this->CategoryProduct = $CategoryProduct;
+        return $this->products;
+    }
+
+    public function addProduct(Product $product): self
+    {
+        if (!$this->products->contains($product)) {
+            $this->products->add($product);
+            $product->setCategory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProduct(Product $product): self
+    {
+        if ($this->products->removeElement($product)) {
+            // set the owning side to null (unless already changed)
+            if ($product->getCategory() === $this) {
+                $product->setCategory(null);
+            }
+        }
 
         return $this;
     }
