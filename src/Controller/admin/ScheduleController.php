@@ -7,6 +7,7 @@ use App\Form\ScheduleFormType;
 use App\Repository\ScheduleRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -22,8 +23,8 @@ class ScheduleController extends AbstractController
         ]);
     }
 
-    #[Route('/admin/schedule/create/', name: 'schedule-create')]
-        public function CreateSchedule(ManagerRegistry $doctrine, Request $request, SluggerInterface $slugger)
+    #[Route('/admin/schedule/create/', name: 'admin-schedule-create')]
+        public function ScheduleCreate(ManagerRegistry $doctrine, Request $request, SluggerInterface $slugger)
         {
             $horaires = new Schedule;
     
@@ -43,7 +44,7 @@ class ScheduleController extends AbstractController
         }
 
     #[Route('/admin/schedule/modifier/{id}', name: 'admin-schedule-edit')]
-    public function ModifHoraire(ManagerRegistry $doctrine, $id, Request $request)
+    public function ScheduleEdit(ManagerRegistry $doctrine, $id, Request $request)
     {
         $horaireRepo = $doctrine->getRepository(Schedule::class);
         $horaire = $horaireRepo->findOneBy(['id'=>$id]);
@@ -63,4 +64,13 @@ class ScheduleController extends AbstractController
             'form' => $form->createView()
         ]);
     }
+    #[Route('/admin/schedule/delete/{id}', name: 'admin-schedule-delete')]
+        public function scheduleDelete(Schedule $schedule, ManagerRegistry $doctrine): RedirectResponse
+        {
+            $em = $doctrine->getManager();
+            $em->remove($schedule);
+            $em->flush();
+
+        return $this->redirectToRoute("admin-schedule");
+        }
 }
