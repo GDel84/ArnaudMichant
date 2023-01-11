@@ -32,8 +32,8 @@ class Reservations
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $mentions_allergene = null;
 
-    #[ORM\ManyToOne(inversedBy: 'reservations')]
-    private ?Users $ReservationUsers = null;
+    #[ORM\ManyToOne(inversedBy: 'reservation')]
+    private ?User $UserResa = null;
 
     public function getId(): ?int
     {
@@ -112,14 +112,14 @@ class Reservations
         return $this;
     }
 
-    public function getReservationUsers(): ?Users
+    public function getUserResa(): ?User
     {
-        return $this->ReservationUsers;
+        return $this->UserResa;
     }
 
-    public function setReservationUsers(?Users $ReservationUsers): self
+    public function setUserResa(?User $UserResa): self
     {
-        $this->ReservationUsers = $ReservationUsers;
+        $this->UserResa = $UserResa;
 
         return $this;
     }
