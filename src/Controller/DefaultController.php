@@ -23,4 +23,11 @@ class DefaultController extends AbstractController
             'carte_name' => 'PublicController',
         ]);
     }
+    #[Route('/reservation', name: 'reservation')]
+    public function reservation(): Response
+    {
+        return $this->render('reservation.html.twig', [
+            'reservation_name' => 'PublicController',
+        ]);
+    }
 }
