@@ -108,45 +108,41 @@ div.menu-pane {
 
 
 .menu-links li:hover a {
-  color: #FFAB91;
+  color: #D2B48C;
 }
 
 .menu-links li:first-child:hover a {
   color: black;  
-  background-color: #FFAB91;
+  background-color: #D2B48C;
 }
 
 #QC-info {
-  background-color: #FFAB91;
-    border: 2px solid;
-  border-color: #FFAB91;
-display: block;
+  background-color: #D2B48C;
+  border: 2px solid;
+  border-color: #D2B48C;
+  display: block;
   opacity: 0;
   
 }
 
 .menu-links li:first-child:hover #QC-info {
-opacity: 1;
+  opacity: 1;
 }
 
 .menu-links li:first-child:hover #DC-info {
-opacity: 1;
+  opacity: 1;
 }
 
 #DC-info {
-  background-color: #FFAB91;
-    border: 2px solid;
-  border-color: #FFAB91;
-display: block;
+  background-color: #D2B48C;
+  border: 2px solid;
+  border-color: #D2B48C;
+  display: block;
   opacity: 0;
 }
-
-
 .menu-links li:first-child a {
   padding: 5px;
 }
-
-
 
 input.hamburger-checkbox {
   position: absolute;
@@ -156,6 +152,55 @@ input.hamburger-checkbox {
   width: 10vw;
   opacity: 0;
   height: 6vh;
+}
+/*.sous{
+  display: none;
+  box-shadow: 0px 1px 2px #CCC;
+  background-color: bisque;
+}
+nav > ul li:hover .sous{
+ display: block; 
+}
+.sous li{
+  float: none;
+  width: 100%;
+  text-align: left;
+}
+.sous a{
+  padding: 10px;
+  border-bottom: none;
+}
+.sous a:hover{
+  border-bottom: none;
+  background-color: RGBa(200, 200, 200,0.1);
+}
+.deroulant > a::after{
+  content:"▼";
+  font-size: 12px;
+}
+.sous{
+  display: none;
+  box-shadow: 0px 1px 2px #CCC;
+  background-color: aqua;
+  position: absolute;
+  width: 100%;
+  z-index: 1000;
+}
+nav ul li{
+  
+  width: 25%;
+  text-align: center;
+  position: relative;
+}*/
+/*-------login--------*/
+
+.carte-log{
+  width: 400px;
+  height: auto;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  text-align: center;
+  position: absolute;
+  margin: 200px 0 200px 500px;
 }
 /*-------header-----*/
 .header-text {
