@@ -5,6 +5,8 @@ namespace App\Controller\Admin;
 use App\Entity\Category;
 use App\Form\CategoryFormType;
 use App\Repository\CategoryRepository;
+use App\Repository\ProductRepository;
+use Doctrine\ORM\Mapping\Id;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -18,7 +20,7 @@ class CategoryController extends AbstractController
     public function index(CategoryRepository $categoryRepo): Response
     {
         return $this->render('category/admin-category.html.twig', [
-            'categorys' => $categoryRepo->finAll(),
+            'categorys' => $categoryRepo->findAll(),
         ]);
     }
 
@@ -44,7 +46,7 @@ class CategoryController extends AbstractController
     }
 
     #[Route('admin/category/edit/{id}', name: 'admin-category-edit')]
-    public function categoryEdit(ManagerRegistry $doctrine, $id, Request $request)
+    public function categoryEdit(ManagerRegistry $doctrine, $id, Request $request, ProductRepository $productRepo)
     {
         $categoryRepo = $doctrine->getRepository(Category::class);
         $category = $categoryRepo->findOneBy(['id'=>$id]);
@@ -61,7 +63,9 @@ class CategoryController extends AbstractController
         }
 
         return $this->render('admin/category/admin-category-edit.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'products' => $productRepo->findBy(['Category' => $category]),
+            'categorys' => $categoryRepo->find(id:$id),
         ]);
     }
     #[Route('/admin/category/delete/{id}', name: 'admin-category-delete')]

@@ -3,7 +3,6 @@
 <h1>La Carte</h1>
 <a href="{{ path("admin-category-create") }}" type="button" class="btn btn-outline-primary"><img src="../photo/icons8-ajouter-une-propriété-48.png" alt="ajouter une categorie"></a>
 
-<a href="{{ path("admin-product-create") }}" type="button" class="btn btn-outline-primary"><img src="../photo/icons8-ajouter-une-propriété-48.png" alt="ajouter un produit"></a>
 
 
 <div class="deco left">
@@ -13,7 +12,7 @@
             <tr>
             <th>Nom</th>
             <th>Description</th>
-            <th>Nom</th>
+            <th>Modifier</th>
             </tr> 
         </thead>
         {% for category in categorys %}
@@ -21,32 +20,7 @@
             <tr>
             <td>{{category.Title}}</td>
             <td>{{category.Description}}</td>
-            <td>{{category.IsMenu}}</td>
-
-            </tr>
-        {% endfor %}
-        </tbody> 
-    </table>
-</div>
-
-<div class="deco left">
- <table class="table table-striped-columns">        
-
-        <thead> 
-            <tr>
-            <th>Nom</th>
-            <th>Description</th>
-            <th>Nom</th>
-            </tr> 
-        </thead>
-
-{% for product in products %}
-<tbody> 
-            <tr>
-            <td>{{product.Title}}</td>
-            <td>{{product.description}}</td>
-            <td>{{product.prices}}</td>
-            <td>{{product.category}}</td>
+            <td><a href="{{ path("admin-category-edit", {id:category.id}) }}" type="button" class="btn btn-outline-primary"><img src="../photo/icons8-ajouter-une-propriété-48.png" alt="modifier une categorie"></a></td>
 
             </tr>
         {% endfor %}

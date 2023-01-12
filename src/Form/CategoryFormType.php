@@ -4,6 +4,8 @@ namespace App\Form;
 
 use App\Entity\Category;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\TextType as TypeTextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -12,8 +14,16 @@ class CategoryFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('Title')
-            ->add('Description')
+            ->add('Title', TypeTextType::class, [
+                'attr' => [
+                    'class' => 'form-control'
+                ],
+                ])
+            ->add('Description', TypeTextType::class, [
+                'attr' => [
+                    'class' => 'form-control'
+                ],
+                ])
             ->add('IsMenu')
         ;
     }
