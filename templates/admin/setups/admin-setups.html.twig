@@ -1,0 +1,31 @@
+{% extends 'admin/baseAdmin.html.twig' %}
+
+{% block title %}Hello SetupsController!{% endblock %}
+
+{% block body %}
+
+<div class="carte-form">
+<h1>Disponiblité du restautant</h1>
+
+    <div class="deco left">
+        <table class="table table-striped-columns">        
+
+            <thead> 
+                <tr>
+  
+                </tr> 
+            </thead>
+            {% for setups in setups %}
+            <tbody> 
+                <tr>
+                <td>{{setups.clefs}}</td>
+                <td>{{setups.value}}</td>
+                <th><a href="{{ path("admin-setups-edit", {id:setups.id}) }}" type="button" class="btn btn-outline-primary">Modifier</a></th>
+                </tr>
+            {% endfor %}
+            </tbody> 
+        </table>
+    </div>
+</div>
+
+{% endblock %}
