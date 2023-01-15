@@ -6,7 +6,6 @@ use App\Entity\Category;
 use App\Form\CategoryFormType;
 use App\Repository\CategoryRepository;
 use App\Repository\ProductRepository;
-use Doctrine\ORM\Mapping\Id;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
