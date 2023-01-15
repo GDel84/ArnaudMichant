@@ -2,17 +2,22 @@
 
 
 {% block body %}
+<div class="carte-product">
+<h1>Modifier Produit</h1>
 
-    <h1>Modifier Produit</h1>
+            {{ form_start(productForm) }}
+            {{ form_row(productForm.Title, {
+            label:'Nom'
+        }) }}
+        {{ form_row(productForm.description, {
+            label:'description'
+        }) }}
+        {{ form_row(productForm.prices, {
+            label:'Prix'
+        }) }}
+                <button type="submit" class="btn-form">Modifier</button>
+            {{ form_end(productForm) }}
 
-    <div class="deco-modif">
-        <div class="deco">
-
-            {{ form_start(form) }}
-            {{ form_widget(form) }}
-                <button type="submit" class="btn-form">Ajouter</button>
-            {{ form_end(form) }}
-        </div>
-    </div>
+</div>
 
 {% endblock %} 

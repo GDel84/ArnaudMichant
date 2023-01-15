@@ -1,32 +1,35 @@
 {% extends 'admin/baseAdmin.html.twig' %}
 {% block body %}
+<div class="carte-form">
 <h1>Horraire du restautant</h1>
 
-<a href="{{ path("admin-schedule-create") }}" type="button" class="btn btn-outline-primary"><img src="../photo/icons8-ajouter-une-propriété-48.png" alt="ajouter un horraire"></a>
 
-<div class="deco left">
- <table class="table table-striped-columns">        
+    <a href="{{ path("admin-schedule-create") }}" type="button" class="btn btn-outline-success">Ajouter</a>
 
-        <thead> 
-            <tr>
-            <th>Jour</th>
-            <th>Midi</th>
-            <th>Soir</th>
-            <th>Modifier</th>
-            <th>Supprimer</th>
-            </tr> 
-        </thead>
-        {% for schedule in schedules %}
-        <tbody> 
-            <tr>
-            <td>{{schedule.week}}</td>
-            <td>{{schedule.scheduleMoon}}</td>
-            <td>{{schedule.scheduleNight}}</td>
-            <th><a href="{{ path("admin-schedule-edit", {id:schedule.id}) }}" type="button" class="btn btn-outline-primary"><img src="../photo/icons8-ajouter-une-propriété-48.png" alt="modifier un horraire"></a></th>
-            <th><a href="{{ path("admin-schedule-delete", {id:schedule.id}) }}" type="button" class="btn btn-outline-primary"><img src="../photo/icons8-ajouter-une-propriété-48.png" alt="supprimer un horraire"></a></th>
-            </tr>
-        {% endfor %}
-        </tbody> 
-    </table>
+    <div class="deco left">
+        <table class="table table-striped-columns">        
+
+            <thead> 
+                <tr>
+                <th>Jour</th>
+                <th>Midi</th>
+                <th>Soir</th>
+                <th>Modifier</th>
+                <th>Supprimer</th>
+                </tr> 
+            </thead>
+            {% for schedule in schedules %}
+            <tbody> 
+                <tr>
+                <td>{{schedule.week}}</td>
+                <td>{{schedule.scheduleMoon}}</td>
+                <td>{{schedule.scheduleNight}}</td>
+                <th><a href="{{ path("admin-schedule-edit", {id:schedule.id}) }}" type="button" class="btn btn-outline-primary">Modifier</a></th>
+                <th><a href="{{ path("admin-schedule-delete", {id:schedule.id}) }}" type="button" class="btn btn-outline-danger">Supprimer</a></th>
+                </tr>
+            {% endfor %}
+            </tbody> 
+        </table>
+    </div>
 </div>
 {% endblock %} 

@@ -2,17 +2,20 @@
 
 
 {% block body %}
-
-    <h1>Crée Produit</h1>
-
-    <div class="deco-modif">
-        <div class="deco">
-
-            {{ form_start(form) }}
-            {{ form_widget(form) }}
-                <button type="submit" class="btn-form">Ajouter</button>
-            {{ form_end(form) }}
-        </div>
-    </div>
-
+<div class="carte-product">
+<h1>Crée Produit</h1>
+            {{ form_start(productForm) }}
+            {{ form_row(productForm.Title, {
+            label:'Nom'
+        }) }}
+        {{ form_row(productForm.description, {
+            label:'description'
+        }) }}
+        {{ form_row(productForm.prices, {
+            label:'Prix'
+        }) }}
+                <button type="submit" class="btn-form">Crée</button>
+            {{ form_end(productForm) }}
+        
+<div>
 {% endblock %} 
