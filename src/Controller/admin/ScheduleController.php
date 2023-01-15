@@ -37,6 +37,8 @@ class ScheduleController extends AbstractController
                     $em = $doctrine->getManager();
                     $em->persist($horaires);
                     $em->flush();
+
+                return $this->redirectToRoute("admin-schedule");
             }
             return $this->render('/admin/schedule/admin-schedule-create.html.twig', [
                 'form' => $form->createView()
