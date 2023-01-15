@@ -1,6 +1,34 @@
 {% extends 'base.html.twig' %}
 {% block body %}
+<div class="carte-log">
 <h1>Reservation</h1>
 
+<section class="container">
+    <div class="row">
+        <div class="col">
+             {{ form_start(reservationForm) }}
+        {{ form_row(reservationForm.Name, {
+            label:'Nom: '
+        }) }}
+        {{ form_row(reservationForm.LastName, {
+            label:'Prénom: '
+        }) }}
+        {{ form_row(reservationForm.email, {
+            label:'e-mail: '
+        }) }}
+        {{ form_row(reservationForm.nbcouverts, {
+            label:'Nombres de personnes: '
+        }) }}
+        {{ form_row(reservationForm.scheduledTime, {
+            label:'date et heur: '
+        }) }}
+        {{ form_row(reservationForm.mentions_allergene, {
+            label:'Allergène: '
+        }) }}
+                <button type="submit" class="btn btn-secondary">Reserver</button>
+            {{ form_end(reservationForm) }}
+        </div>
+    </div>
+</section>
 
 {% endblock %} 
