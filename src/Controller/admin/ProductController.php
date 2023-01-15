@@ -39,7 +39,7 @@ class ProductController extends AbstractController
 
             }
             return $this->render('/admin/product/admin-product-create.html.twig', [
-                'form' => $form->createView()
+                'productForm' => $form->createView()
             ]);
         }
 
@@ -61,7 +61,7 @@ class ProductController extends AbstractController
         }
 
         return $this->render('admin/product/admin-product-edit.html.twig', [
-            'form' => $form->createView()
+            'productForm' => $form->createView()
         ]);
     }
     #[Route('/admin/produit/delete/{id}', name: 'admin-produit-delete')]
