@@ -15,10 +15,10 @@ class Reservations
     private ?int $id = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $eamil = null;
+    private ?string $Name = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $Name = null;
+    private ?string $email = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $LastName = null;
@@ -40,18 +40,6 @@ class Reservations
         return $this->id;
     }
 
-    public function getEamil(): ?string
-    {
-        return $this->eamil;
-    }
-
-    public function setEamil(?string $eamil): self
-    {
-        $this->eamil = $eamil;
-
-        return $this;
-    }
-
     public function getName(): ?string
     {
         return $this->Name;
@@ -60,6 +48,18 @@ class Reservations
     public function setName(?string $Name): self
     {
         $this->Name = $Name;
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(?string $email): self
+    {
+        $this->email = $email;
 
         return $this;
     }
@@ -123,4 +123,11 @@ class Reservations
 
         return $this;
     }
+
+    public function __toString()
+    {
+        return $this->getName();
+    }
+
+
 }
