@@ -39,7 +39,7 @@
                 <td>{{product.description}}</td>
                 <td>{{product.prices}}€</td>
                 <td><a href="{{ path("admin-product-edit", {id:product.id}) }}" type="button" class="btn btn-outline-primary">Modifier</a></td>
-                <td><a href="{{ path("admin-product-edit", {id:product.id}) }}" type="button" class="btn btn-outline-danger">Supprimer</a></td>
+                <td><a href="{{ path("admin-product-delete", {id:product.id}) }}" type="button" class="btn btn-outline-danger">Supprimer</a></td>
                 </tr>
             {% endfor %}
             </tbody> 
