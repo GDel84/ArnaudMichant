@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Product;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType as TypeTextType;
@@ -30,6 +31,10 @@ class ProductFormType extends AbstractType
                 ],
                 ])
             ->add('Category')
+            ->add('submit', SubmitType::class, [
+                'attr' => ['class' => 'modif'],
+                "label" => 'Enregister'
+                ])
         ;
     }
 
