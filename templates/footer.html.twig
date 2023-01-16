@@ -1,0 +1,21 @@
+
+<div class="deco left">
+        <table class="table table-striped-columns">        
+
+            <thead> 
+                <tr>
+                <th>Jour</th>
+                <th>Midi</th>
+                <th>Soir</th>
+                </tr> 
+            </thead>
+{% for schedule in schedules %}
+             <tbody> 
+                <tr>
+                <td>{{schedule.week}}</td>
+                <td>{{schedule.scheduleMoon}}</td>
+                <td>{{schedule.scheduleNight}}</td>
+                </tr>
+{% endfor %}
+</tbody> 
+</table>
