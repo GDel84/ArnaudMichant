@@ -43,8 +43,8 @@ class ProductController extends AbstractController
             ]);
         }
 
-    #[Route('/admin/product/modifier/{id}', name: 'admin-product-edit')]
-    public function ModifProduct(ManagerRegistry $doctrine, $id, Request $request)
+    #[Route('/admin/product/edit/{id}', name: 'admin-product-edit')]
+    public function productEdit(ManagerRegistry $doctrine, $id, Request $request)
     {
         $productRepo = $doctrine->getRepository(Product::class);
         $horaire = $productRepo->findOneBy(['id'=>$id]);
@@ -64,8 +64,8 @@ class ProductController extends AbstractController
             'productForm' => $form->createView()
         ]);
     }
-    #[Route('/admin/produit/delete/{id}', name: 'admin-produit-delete')]
-        public function produitDelete(Product $product, ManagerRegistry $doctrine): RedirectResponse
+    #[Route('/admin/product/delete/{id}', name: 'admin-product-delete')]
+        public function productDelete(Product $product, ManagerRegistry $doctrine): RedirectResponse
         {
             $em = $doctrine->getManager();
             $em->remove($product);
