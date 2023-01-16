@@ -1,8 +1,11 @@
-{% extends 'admin/baseAdmin.html.twig' %}
+       {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+            <link rel="stylesheet" href="{{ asset('css/adminstyle.css')}}">
+        {% endblock %}
 
 
 {% block body %}
-<div class="carte-product">
+<div class="carte-form-create">
 <h1>Crée Produit</h1>
             {{ form_start(productForm) }}
             {{ form_row(productForm.Title, {
@@ -14,7 +17,6 @@
         {{ form_row(productForm.prices, {
             label:'Prix'
         }) }}
-                <button type="submit" class="btn-form">Crée</button>
             {{ form_end(productForm) }}
         
 <div>
