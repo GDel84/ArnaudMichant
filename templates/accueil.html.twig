@@ -3,21 +3,13 @@
 <div class="header-text">
     <h1>Quai Antique Chambéry</h1>
 </div>
-
+{% for picture in pictures %}
 <ul class="gallery">
-    <li><img src="/photo/montagnevile.jpg" alt="montagne"></li>
-    <li><img src="/photo/fondue.jpg" alt=""></li>
-    <li><img src="/photo/fondue-charcuterie.jpg" alt=""></li>
-    <li><img src="/photo/fondue-pain.jpg" alt=""></li>
-    <li><img src="/photo/fondue-repas.jpg" alt=""></li>
-    <li><img src="/photo/montagnevile.jpg" alt=""></li>
-    <li><img src="/photo/montagnevile.jpg" alt=""></li>
-    <li><img src="/photo/montagnevile.jpg" alt=""></li>
-    <li><img src="/photo/montagnevile.jpg" alt=""></li>
-    <li><img src="/photo/montagnevile.jpg" alt=""></li>
-    <li><img src="/photo/montagnevile.jpg" alt=""></li>
-
+<li><img src={{asset('../uploads/picture/' ~ picture.picture)}}></li>
+    {#<li><img src="/photo/montagnevile.jpg" alt="montagne"></li>#}
   </ul>
+  {% endfor %}
+
 
 
 
