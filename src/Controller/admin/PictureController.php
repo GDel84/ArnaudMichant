@@ -9,6 +9,7 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -20,7 +21,7 @@ class PictureController extends AbstractController
     public function picture(PhotoRepository $picRepo): Response
     {
         return $this->render('admin/picture/admin-picture.html.twig', [
-            'pictures' => $picRepo->findAll(),
+            'pictures' => $picRepo->findBy(array(),array('pictureOrder'=>'asc')),
         ]);
     }
     #[Route('/admin/picture/create', name: 'admin-picture-create')]
@@ -67,7 +68,7 @@ class PictureController extends AbstractController
             // ... persist the $product variable or any other work
 
         return $this->render('admin/picture/admin-picture-create.html.twig', [
-            'form' => $form->createView(),
+            'pictureForm' => $form->createView(),
         ]);
     }
 
@@ -115,7 +116,51 @@ class PictureController extends AbstractController
         }
         
         return $this->render('admin/picture/admin-picture-edit.html.twig', [
-            'form' => $form->createView()
+            'pictureForm' => $form->createView()
         ]);
+    }
+    #[Route('/admin/pricture/delete/{id}', name: 'admin-picture-delete')]
+        public function PictureDelete(Photo $picture, ManagerRegistry $doctrine): RedirectResponse
+        {
+            $em = $doctrine->getManager();
+            $em->remove($picture);
+            $em->flush();
+
+        return $this->redirectToRoute("admin-picture");
+        }
+
+    #[Route('/admin/picture/{id}/{move}', name: 'admin-picture-move')]
+    public function PictureMouve(ManagerRegistry $doctrine, $move, $id){
+
+        $em = $doctrine->getManager();
+        $picRepo = $doctrine->getRepository(Photo::class);
+        $picture = $picRepo->findOneBy(array('id'=>$id)); 
+
+        if($picture->getPictureOrder()==null){
+            $picture->setPictureOrder(0);
+        }
+        if($move=='haut'){
+            $position=$picture->getPictureOrder();
+            if($position!=0){
+                $position = $position-1;
+            }  
+        }
+        if($move=='bas'){
+            $position=$picture->getPictureOrder();
+            if($position!=0){
+                $position = $position+1;
+            }
+        }
+        $pictureInvers=$picRepo->findOneBy(array('pictureOrder'=>$position));
+        if($pictureInvers){
+            $pictureInvers->setPictureOrder($picture->getPictureOrder());
+            $em->persist($pictureInvers);
+        }
+        $picture->setPictureOrder($position);
+        
+        $em->persist($picture);
+        $em->flush();
+        
+        return $this->redirectToRoute('admin-picture');
     }
 }
