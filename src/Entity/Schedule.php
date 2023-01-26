@@ -17,12 +17,6 @@ class Schedule
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $week = null;
 
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $scheduleMoon = null;
-
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $scheduleNight = null;
-
     #[ORM\Column(type: Types::TIME_IMMUTABLE, nullable: true)]
     private ?\DateTimeImmutable $noonStartTime = null;
 
@@ -48,30 +42,6 @@ class Schedule
     public function setWeek(?string $week): self
     {
         $this->week = $week;
-
-        return $this;
-    }
-
-    public function getScheduleMoon(): ?string
-    {
-        return $this->scheduleMoon;
-    }
-
-    public function setScheduleMoon(?string $scheduleMoon): self
-    {
-        $this->scheduleMoon = $scheduleMoon;
-
-        return $this;
-    }
-
-    public function getScheduleNight(): ?string
-    {
-        return $this->scheduleNight;
-    }
-
-    public function setScheduleNight(?string $scheduleNight): self
-    {
-        $this->scheduleNight = $scheduleNight;
 
         return $this;
     }
@@ -123,4 +93,5 @@ class Schedule
 
         return $this;
     }
+
 }
