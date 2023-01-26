@@ -23,6 +23,18 @@ class Schedule
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $scheduleNight = null;
 
+    #[ORM\Column(type: Types::TIME_IMMUTABLE, nullable: true)]
+    private ?\DateTimeImmutable $noonStartTime = null;
+
+    #[ORM\Column(type: Types::TIME_IMMUTABLE, nullable: true)]
+    private ?\DateTimeImmutable $noonEndTime = null;
+
+    #[ORM\Column(type: Types::TIME_IMMUTABLE, nullable: true)]
+    private ?\DateTimeImmutable $nightStartTime = null;
+
+    #[ORM\Column(type: Types::TIME_IMMUTABLE, nullable: true)]
+    private ?\DateTimeImmutable $nightEndTime = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -60,6 +72,54 @@ class Schedule
     public function setScheduleNight(?string $scheduleNight): self
     {
         $this->scheduleNight = $scheduleNight;
+
+        return $this;
+    }
+
+    public function getNoonStartTime(): ?\DateTimeImmutable
+    {
+        return $this->noonStartTime;
+    }
+
+    public function setNoonStartTime(?\DateTimeImmutable $noonStartTime): self
+    {
+        $this->noonStartTime = $noonStartTime;
+
+        return $this;
+    }
+
+    public function getNoonEndTime(): ?\DateTimeImmutable
+    {
+        return $this->noonEndTime;
+    }
+
+    public function setNoonEndTime(?\DateTimeImmutable $noonEndTime): self
+    {
+        $this->noonEndTime = $noonEndTime;
+
+        return $this;
+    }
+
+    public function getNightStartTime(): ?\DateTimeImmutable
+    {
+        return $this->nightStartTime;
+    }
+
+    public function setNightStartTime(?\DateTimeImmutable $nightStartTime): self
+    {
+        $this->nightStartTime = $nightStartTime;
+
+        return $this;
+    }
+
+    public function getNightEndTime(): ?\DateTimeImmutable
+    {
+        return $this->nightEndTime;
+    }
+
+    public function setNightEndTime(?\DateTimeImmutable $nightEndTime): self
+    {
+        $this->nightEndTime = $nightEndTime;
 
         return $this;
     }
