@@ -1,32 +1,97 @@
 {% extends 'base.html.twig' %}
 {% block body %}
+{% block customJS %}
+<script>
+function getDate(){
+        let dateselect = $("#scheduledDate" ).val();
+        $.ajax({
+            url: "/getdate",
+            type: "POST",
+            data: {"date": dateselect},
+            dataType:'json',
+            success: function (response) {
+                console.log(response);
+                //Ramplir la liste déroulante des horaires.
+                var horaires = ["08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00"];
+            },
+            error: function(error){
+                console.log("Something went wrong", error);
+            }
+        });
+    }
+function getTime(){
+        $.ajax({
+            url: "/gettime",
+            type: "POST",
+            data: {"time": "test de time"},
+            dataType:'json',
+            success: function (response) {
+                console.log(response);
+                $("#reservations_form_Name" ).val(response[0]);
+            },
+            error: function(error){
+                console.log("Something went wrong", error);
+            }
+        });
+    }
+        
+</script>
+{% endblock %}
 <div class="carte-log">
 <h1>Reservation</h1>
 
 <section class="container">
     <div class="row">
         <div class="col">
-             {{ form_start(reservationForm) }}
-        {{ form_row(reservationForm.Name, {
-            label:'Nom: '
-        }) }}
-        {{ form_row(reservationForm.LastName, {
-            label:'Prénom: '
-        }) }}
-        {{ form_row(reservationForm.email, {
-            label:'e-mail: '
-        }) }}
-        {{ form_row(reservationForm.nbcouverts, {
-            label:'Nombres de personnes: '
-        }) }}
-        {{ form_row(reservationForm.scheduledTime, {
-            label:'date et heur: '
-        }) }}
-        {{ form_row(reservationForm.mentions_allergene, {
-            label:'Allergène: '
-        }) }}
-                <button type="submit" class="btn btn-secondary">Reserver</button>
-            {{ form_end(reservationForm) }}
+        <form action="/reservation" method="POST">
+        {# {{ form_start(reservationForm) }} #}
+        {# <input type="text" id="reservations_form_Name" name="reservations_form[Name]" required="required" class="form-control"> #}
+        <div>
+            <label for="name">Nom :</label>
+            <input type="text" id="name" name="user_name">
+        </div>
+
+        <div>
+            <label for="LastName">Prénom :</label>
+            <input type="text" id="LastName" name="user_LastName">
+        </div>
+
+        <div>
+            <label for="email">E-mail :</label>
+            <input type="text" id="eamil" name="user_email">
+        </div>
+        <div>
+            <label for="schedule">Allergène :</label>
+            <input type="text" id="scheduledTime" name="user_scheduled">
+        </div>
+
+        <div>
+            <label for="nbcouverts">Nombre de personne :</label>
+            <input type="number" id="nbcouverts" name="user_nbcouverts">
+        </div>
+
+        <div>
+            <label for="schedule">Date :</label>
+            <input type="date" id="scheduledDate" name="user_scheduled" onChange="getDate()">
+        </div>
+
+        <div>
+            <label for="schedule">Horaire :</label>
+            <select name="pets" id="time-select" onChange="getHoraires()">
+                <option value="">--Midi--</option>
+                    {#{HORAIRE.map((pax, i) => <option key={i} value={horaires}>{horaire}</option>)}#}
+                    {#<option value="time">{{ constant('getdate\\') }}</option>#}
+                        <select id="horaires">
+                        {% for schedule in schedules %}
+                            <option value=""> {{schedule.noonStartTime|date("H:i") }}</option>
+                        </select>                   
+                            <option value="">--Soir--</option>
+                        {% endfor %}
+                    
+            </select>
+        </div>
+        <button type="submit" class="btn btn-secondary">Reserver</button>
+        {# {{ form_end(reservationForm) }} #}
         </div>
     </div>
 </section>
