@@ -4,8 +4,12 @@ namespace App\Controller;
 
 use App\Entity\Schedule;
 use App\Repository\PhotoRepository;
+use App\Repository\ReservationsRepository;
 use App\Repository\ScheduleRepository;
+use App\Repository\SetupsRepository;
 use DateTime;
+use DateTimeImmutable;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -57,11 +61,63 @@ class DefaultController extends AbstractController
 
         return new JsonResponse($resp);
     }
-    #[Route('/gettime', name: 'gettime', methods: ['POST','GET'])]
-    public function gettime(ScheduleRepository $scheduleRepo, Request $request): Response
+
+    #[Route('/getdispo', name: 'getdispo', methods: ['POST','GET'])]
+    public function getdispo(SetupsRepository $SetupRepo, ManagerRegistry $doctrine, ReservationsRepository $ResaRepo, ScheduleRepository $scheduleRepo, Request $request): Response
     {
-        dump($request->request->get('time'));
-        $resp = ['Guigui'];
-        return new JsonResponse($resp);
+        $formdate = $request->request->get('date');
+        $formtime = $request->request->get('time');
+        $time = substr($formtime, 0, 2);
+
+        $noon = false;
+        if( $time < 15 ){
+           $noon = true;
+        }
+
+        $datereservation = DateTime::createFromFormat('Y-m-d H:i', $formdate.' '.$formtime);
+        
+        $weekDay = $datereservation->format('w');
+        $weekSchedule = $scheduleRepo->findOneBy(['week'=>$weekDay]);
+        
+        if($noon == true){
+            $start = $weekSchedule->getNoonStartTime()->modify($formdate);
+            $end = $weekSchedule->getNoonEndTime()->modify($formdate);
+        } else {
+            $start = $weekSchedule->getNightStartTime()->modify($formdate);
+            $end = $weekSchedule->getNightEndTime()->modify($formdate);
+        }
+
+        //dump(sizeof(($result)));
+        $nbresa = $ResaRepo->nbplace($start, $end);
+
+        //recupere le nombre de place disponible dans le setups
+        $place = $SetupRepo->findOneBy([
+            'clefs'=>"place disponible"
+        ]);
+        $placeDispo = $place->getvalue();
+        
+        
+        $nbplaceslibres = ($placeDispo - $nbresa[0]['totalcouverts']);
+        
+        $tableresult = ['dispo'=>$nbplaceslibres];  
+              
+        dump($tableresult);
+
+        return new JsonResponse($tableresult);
     }
+    #[Route('/getplace', name: 'getplace', methods: ['POST','GET'])]
+    public function getplace(SetupsRepository $SetupRepo, ScheduleRepository $scheduleRepo, Request $request): Response
+    {
+        $place = $SetupRepo->findOneBy([
+            'clefs'=>"place disponible"
+        ]);
+        $placeDispo = $place->getvalue();
+
+        dump($placeDispo);
+        
+
+        return new JsonResponse($placeDispo);
+
+    }
+
 }
