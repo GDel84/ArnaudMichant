@@ -2,19 +2,19 @@
 {% block body %}
 <div class="header-text">
     <h1>Quai Antique Chambéry</h1>
+    <div class="pictureHeader">
+
+    <div>
 </div>
-{% for picture in pictures %}
+
 <ul class="gallery">
-<li><img src={{asset('../uploads/picture/' ~ picture.picture)}}></li>
-    {#<li><img src="/photo/montagnevile.jpg" alt="montagne"></li>#}
-  </ul>
+  {% for picture in pictures %}
+    <li>
+      <img src={{asset('../uploads/picture/' ~ picture.picture)}}>
+      <div class="caption">{{ picture.title }}</div>
+    </li>
   {% endfor %}
-
-
-
-
-
-        
-
+</ul>
+ 
 
 {% endblock %} 

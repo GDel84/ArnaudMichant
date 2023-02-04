@@ -225,8 +225,8 @@ h1{
   flex-wrap: wrap;
   gap: 2vmin;
   padding: 0 14px;
-  position: absolute;
-  margin-top: 25px;
+  position: relative;
+  margin-top: 150px;
 }
 .gallery::after {
   content:'';
@@ -243,10 +243,31 @@ h1{
   height: 100%;
   object-fit: cover;
 }
+.gallery .caption {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 10px;
+  display: none;
+}
+.gallery li:hover .caption {
+  display: block;
+}
+.gallery .caption::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -10px;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-right: 10px solid rgba(0, 0, 0, 0.5);
+  transform: translateY(-50%);
+}
+
 
 /*-------------Footer-----------*/
 footer{
-  position: absolute;
+  position:fixed;
   bottom: 0;
   display : block;
   align-items: center;
