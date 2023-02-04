@@ -26,6 +26,37 @@
             </tbody> 
         </table>
     </div>
+
+    <h1>Reservations</h1>
+        <div class="deco left">
+            <table class="table table-striped-columns">        
+
+                <thead> 
+                    <tr>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>e-mail</th>
+                        <th>Couvert</th>
+                        <th>Date</th>
+                        <th>Heur</th>
+                    </tr> 
+                </thead>
+                {% for reservations in reservations %}
+                <tbody> 
+                    <tr>
+                        <td>{{reservations.Name}}</td>
+                        <td>{{reservations.LastName}}</td>
+                        <td>{{reservations.email}}</td>
+                        <td>{{reservations.nbcouverts}}</td>
+                        <td>{{reservations.scheduledTime|date("j/m/Y")}}</td>
+                        <td>{{reservations.scheduledTime|date("H:i")}}</td>
+
+
+                    </tr>
+                {% endfor %}
+                </tbody> 
+            </table>
+        </div>
 </div>
 
 {% endblock %}
