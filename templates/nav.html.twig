@@ -21,11 +21,18 @@
               <p>06 00 00 00 00</p>
             </span>
             </li>
-            <li><a href="###">déjeuner</a></li>
+            {% if is_granted('ROLE_ADMIN') %}
+              <li><a href="{{ path('admin_accueil') }}">Section Admin</a></li>
+            {% endif %}
             <li><a href="{{path('carte')}}">Carte</a></li>
             <li><a href="{{path('reservation')}}">Reserver</a></li>
-            <li><a href="{{path('register')}}">Inscription</a></li>
-            <li><a href="{{path('login')}}">Connection</a></li>
+            {% if app.user %}
+              <li><a href="{{ path('moncompte') }}">Mon profil</a></li>
+              <li><a href="{{ path('logout') }}">Déconnexion</a></li>
+            {% else %}
+              <li><a href="{{ path('login') }}">Connection</a></li>
+              <li><a href="{{ path('register') }}">S'inscrire</a></li>
+            {% endif %}
         </nav>
 
       </div>
