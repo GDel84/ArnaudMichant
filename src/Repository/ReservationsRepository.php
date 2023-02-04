@@ -39,6 +39,38 @@ class ReservationsRepository extends ServiceEntityRepository
         }
     }
 
+    public function nbreservation($start, $end)
+    {
+        return $this->createQueryBuilder('r')
+            ->select('r')
+            ->where("r.scheduledTime >= :start")
+            ->andWhere("r.scheduledTime <= :end")
+            ->setParameter("start", $start)
+            ->setParameter("end", $end)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function nbplace($start, $end)
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
+            SELECT SUM(nbcouverts) AS totalcouverts FROM reservations 
+            WHERE scheduled_time BETWEEN :start AND :end
+            ';
+            
+        $stmt = $conn->prepare($sql);
+        $resultSet = $stmt->executeQuery([
+            'start' => $start->format('Y-m-d H:i'), 
+            'end' => $end->format('Y-m-d H:i')
+        ]);
+
+        return $resultSet->fetchAllAssociative();
+    }
+
+
+
 //    /**
 //     * @return Reservations[] Returns an array of Reservations objects
 //     */
