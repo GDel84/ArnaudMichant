@@ -19,7 +19,7 @@ class CategoryController extends AbstractController
     public function index(CategoryRepository $categoryRepo): Response
     {
         return $this->render('category/admin-category.html.twig', [
-            'categorys' => $categoryRepo->findAll(),
+            'categorys' => $categoryRepo->findBy(array(),array('CategoryOrder'=>'asc')),
         ]);
     }
 
@@ -67,6 +67,7 @@ class CategoryController extends AbstractController
             'categorys' => $categoryRepo->find(id:$id),
         ]);
     }
+
     #[Route('/admin/category/delete/{id}', name: 'admin-category-delete')]
         public function categoryDelete(Category $category, ManagerRegistry $doctrine): RedirectResponse
         {
@@ -75,5 +76,40 @@ class CategoryController extends AbstractController
             $em->flush();
 
         return $this->redirectToRoute("admin-carte");
+        }
+
+        #[Route('category/move/{id}/{move}', name: 'category-move')]
+        public function categoryMove(ManagerRegistry $doctrine, $move, $id){
+    
+            $em = $doctrine->getManager();
+            $categoryRepo = $doctrine->getRepository(Category::class);
+            $category = $categoryRepo->findOneBy(array('id'=>$id)); 
+    
+            if($category->getCategoryOrder()==null){
+                $category->setCategoryOrder(0);
+            }
+            if($move=='haut'){
+                $position=$category->getCategoryOrder();
+                if($position!=0){
+                    $position = $position-1;
+                }  
+            }
+            if($move=='bas'){
+                $position=$category->getCategoryOrder();
+                if($position!=0){
+                    $position = $position+1;
+                }
+            }
+            $categoryInvers=$categoryRepo->findOneBy(array('CategoryOrder'=>$position));
+            if($categoryInvers){
+                $categoryInvers->setCategoryOrder($category->getCategoryOrder());
+                $em->persist($categoryInvers);
+            }
+            $category->setCategoryOrder($position);
+            
+            $em->persist($category);
+            $em->flush();
+            
+            return $this->redirectToRoute('admin-carte');
         }
 }
