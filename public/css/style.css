@@ -4,12 +4,13 @@
   margin: 0;
   padding: 0;
 }
+html{
+  font-size: 20px;
+}
+
 body {
-  font-family: Libre Caslon Text;
+  font-family: 'Dancing Script', sans-serif;
   background-color: #D2B48C;
-  z-index: 2;
-  margin: 0;
-  display : table;
 	width: 100%;
 }
 
@@ -18,14 +19,14 @@ body {
   position: absolute;
   z-index: 100;
   top: 5vh;
-  left: 5vw;
+  left: 6vw;
   padding-bottom: 2vh;
 }
 
 .hamburger-icon span {
   height: 5px;
   width: 40px;
-  background-color: black;
+  background-color: white;
   display: block;
   margin: 5px 0px 5px 0px;
   transition: 0.7s ease-in-out;
@@ -62,7 +63,7 @@ display: none;
 }
 
 div.menu-pane {
-  background-color: #712E1E;
+  background-color: #8B5E3C;
   position: absolute;
   transform: translateX(-105vw);
   transform-origin: (0, 0);
@@ -81,7 +82,7 @@ div.menu-pane {
 }
 
 .menu-links li, a, span {
-      transition: 0.5s ease-in-out;
+  transition: 0.5s ease-in-out;
 }
 
 .menu-pane ul {
@@ -106,6 +107,7 @@ div.menu-pane {
 .menu-links li a {
   color: white;
   text-decoration: none;
+  font-family: 'Libre Caslon Text', Helvetica, sans-serif;
 }
 
 
@@ -155,45 +157,6 @@ input.hamburger-checkbox {
   opacity: 0;
   height: 6vh;
 }
-/*.sous{
-  display: none;
-  box-shadow: 0px 1px 2px #CCC;
-  background-color: bisque;
-}
-nav > ul li:hover .sous{
- display: block; 
-}
-.sous li{
-  float: none;
-  width: 100%;
-  text-align: left;
-}
-.sous a{
-  padding: 10px;
-  border-bottom: none;
-}
-.sous a:hover{
-  border-bottom: none;
-  background-color: RGBa(200, 200, 200,0.1);
-}
-.deroulant > a::after{
-  content:"▼";
-  font-size: 12px;
-}
-.sous{
-  display: none;
-  box-shadow: 0px 1px 2px #CCC;
-  background-color: aqua;
-  position: absolute;
-  width: 100%;
-  z-index: 1000;
-}
-nav ul li{
-  
-  width: 25%;
-  text-align: center;
-  position: relative;
-}*/
 /*-------login--------*/
 
 .carte-log{
@@ -207,26 +170,68 @@ nav ul li{
 /*-------header-----*/
 .header-text {
   display: block;
-  width: auto;
-  height: 150px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-  background-color: #712E1E;
+  width: 100%;
+  height: 350px;
   position: relative;
+  background-image: url(/photo/Repas-Chalet.jpg);
+  background-position:top;
+  background-repeat: space;
+  background-position-y:50%;
 }
-h1{
-  text-align: center;
+.title{
+  font-size: 80px;
+  text-align:center;
+  font-weight: 900;
+  padding-top: 100px;
+  color: white;
+  font-family: 'Libre Caslon Text', Helvetica, sans-serif;
+}
+.presentation{
+  font-size: 35px;
+  margin: auto;
+  color: white;
+  max-width: 90%;
+}
+@media screen and (max-width: 1300px) {
+  .presentation {
+    max-width: 80%;
+  }
+}
+@media screen and (max-width: 1000px) {
+  .header-text {
+    height: 400px;
+  }
+  .title{
+    font-size: 50px;
+    font-weight: 800;
+    padding-top: 150px;
+  }
+  .presentation{
+    font-size: 45px;
+  }
+}
+@media screen and (max-width: 550px) {
+  .header-text {
+    height: 500px;
+  }
+  .title {
+    font-size: 60px;
+  }
+    .presentation{
+      font-size: 18px;
+  }
 }
 /*---------La Galerie-----------*/
 
 .gallery {
-  max-width: 1300px;
+  max-width: 80%;
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
   gap: 2vmin;
   padding: 0 14px;
   position: relative;
-  margin-top: 150px;
+  margin-top: 50px;
 }
 .gallery::after {
   content:'';
@@ -263,20 +268,122 @@ h1{
   border-right: 10px solid rgba(0, 0, 0, 0.5);
   transform: translateY(-50%);
 }
+@media screen and (max-width: 1300px) {
+  .gallery li {
+    height: 350px;
+  }
+}
+@media screen and (max-width: 1000px) {
+  
+  .gallery li {
+    height: 300px;
+  }
+}
+/*@media screen and (max-width: 550px) {
+  
+}*/
+/*---------Button Reservation---------*/
+.wooden-button {
+  background-color: #8B5E3C;
+  color: white;
+  font-family:'Libre Caslon Text';
+  padding: 20px 40px;
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px #7A7A7A;
+  text-shadow: 1px 1px #7A7A7A;
+  font-size: 20px;
+  cursor: pointer;
+  margin: 20px 0 10px 44%;
+  transition: all 0.3s;
+}
+.wooden-button:hover {
+  background-color: #664C28;
+  box-shadow: 3px 3px 3px #7A7A7A;
 
+}
+@media screen and (max-width: 1300px) {
+  .wooden-button {
+    padding: 40px 60px;
+    border-radius: 10px;
+    font-size: 30px;
+  }
+}
+/*----------------Carte---------------------*/
+.carte{
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 50px 14px;
+  position: relative;
+  margin-top: 50px;
+  text-align: center;
+  background-color:bisque;
+}
+.titleCarte{
+  font-size: 60px;
+  margin-bottom: 5%;
+  color: #8B5E3C;
+}
+.titleCategory{
+  font-size:xx-large;
+  margin: 0;
+  border-top: 5px outset #712E1E;
+  color: #8B5E3C;
+}
+.descriptionCategory{
+  font-style: italic;
+}
+.carteBorder{
+  list-style-type: none;
+}
+.product{
+  margin:10px;
+}
+
+.titleProduct{
+  font-weight:bold;
+}
+.descriptionProduct{
+  font-weight: lighter;
+}
+.price{
+  font-weight:bold;
+}
 
 /*-------------Footer-----------*/
-footer{
-  position:fixed;
-  bottom: 0;
-  display : block;
-  align-items: center;
+h2{
+  font-size: 14px;
+  font-weight:bold;
+  
+}
+.footerBlock{
+  position: relative;
+  width: 50%;
+  margin: 10px 0% 15% 32%;
 }
 .footer{
   width: 500px;
   height: 100%;
-  font-size: 12px;
+  font-size: 10px;
   text-align: center;
-  margin: auto;
+  margin: 5% 0% 0 0;
   position: absolute;
+}
+@media screen and (max-width: 1300px) {
+  .footer{
+    font-size: 18px;
+    margin-right: 50%;
+  }
+  .footerBlock{
+    margin: 10px 0% 30% 25%;
+  }
+}
+  @media screen and (max-width: 1000px) {
+    .footerBlock{
+      margin: 10px 0% 30% 25%;
+    }
+}
+@media screen and (max-width: 550px) {
+  .footer{
+    font-size: 25px;
+  }
 }
