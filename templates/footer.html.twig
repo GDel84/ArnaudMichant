@@ -1,17 +1,19 @@
 
 <div class="footer">
+<h2>Horaire d'ouverture</h2>
         <table class="table table-striped-columns">        
-
             <thead> 
                 <tr>
                 <th>Jour</th>
                 <th>Midi</th>
+                <th></th>
                 <th>Soir</th>
+                <th></th>
                 </tr> 
             </thead>
-{% for schedule in schedules %}
-             <tbody> 
+            <tbody> 
                 <tr>
+{% for schedule in schedules %}
                 <td>{{ weekDay[schedule.week]}}</td>
                 <td>{{schedule.noonStartTime|date("H:i")}}</td>
                 <td>{{schedule.noonEndTime|date("H:i")}}</td>
