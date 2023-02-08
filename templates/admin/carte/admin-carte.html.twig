@@ -11,6 +11,7 @@
                     <tr>
                     <th>Nom</th>
                     <th>Description</th>
+                    <th>Odre d'affichage</th>
                     <th>Modifier</th>
                     <th>Supprimer</th>
                     </tr> 
@@ -20,8 +21,11 @@
                     <tr>
                     <td>{{category.Title}}</td>
                     <td>{{category.Description}}</td>
+                    <td>{{category.CategoryOrder}}</td>
                     <td><a href="{{ path("admin-category-edit", {id:category.id}) }}" type="button" class="btn btn-outline-primary">Modifier</a></td>
-                    <th><a href="{{ path("admin-category-delete", {id:category.id}) }}" type="button" class="btn btn-outline-danger">Supprimer</a></th>
+                    <th><a href="{{ path("admin-category-delete", {id:category.id}) }}" type="button" class="btn btn-outline-danger">Supprimer</a></td>
+                    <td><a class="btn btn-outline-primary" href="{{ path("category-move", {id:category.id, move:'haut'} ) }}"><img src="../photo/icons8-en-haut-48.png"></a></td>
+                    <td><a class="btn btn-outline-primary" href="{{ path("category-move", {id:category.id, move:'bas'} ) }}"><img src="../photo/icons8-vers-le-bas-48.png" ></a></td>
                     </tr>
                 {% endfor %}
                 </tbody> 
