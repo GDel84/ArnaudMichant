@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Schedule;
+use App\Repository\CategoryRepository;
 use App\Repository\PhotoRepository;
 use App\Repository\ReservationsRepository;
 use App\Repository\ScheduleRepository;
@@ -29,11 +30,12 @@ class DefaultController extends AbstractController
         ]);
     }
     #[Route('/carte', name: 'carte')]
-    public function contacter(ScheduleRepository $scheduleRepo): Response
+    public function contacter(ScheduleRepository $scheduleRepo, CategoryRepository $categoryRepo): Response
     {
         return $this->render('carte.html.twig', [
             'carte_name' => 'PublicController',
             'schedules' => $scheduleRepo->findAll(),
+            'categorys' => $categoryRepo->findBy(array(),array('CategoryOrder'=>'asc')),
         ]);
     }
     #[Route('/reservation', name: 'reservation')]
