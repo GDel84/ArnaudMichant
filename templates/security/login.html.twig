@@ -14,12 +14,12 @@
         </div>
     {% endif %}
     <div class="carte-log">
-        <h1 class="h3 mb-3 font-weight-normal">Me connecter</h1>
+        <h1 class="h3 mb-3 font-weight-normal">Se Connecter</h1>
         <div class="mb-3">
-            <label for="inputEmail" class="form-label">Email</label>
-            <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control-lg" autocomplete="email" required autofocus>
-            <label for="inputPassword" class="form-label">Mot de passe</label>
-            <input type="password" name="password" id="inputPassword" class="form-control-lg" autocomplete="current-password" required>
+            <label for="inputEmail" class="form-label">E-mail:</label>
+            <input class="form-control" type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control-lg" autocomplete="email" required autofocus>
+            <label for="inputPassword" class="form-label">Mot de passe:</label>
+            <input class="form-control" type="password" name="password" id="inputPassword" class="form-control-lg" autocomplete="current-password" required>
     
             <input type="hidden" name="_csrf_token" 
                value="{{ csrf_token('authenticate') }}">
@@ -37,12 +37,12 @@
             </div>
         #}
     
-        <button class="btn btn-secondary" type="submit">
-            Me connecter
+        <button class="wooden-button-log" type="submit">
+            Connection
         </button>
     </div>
 </form>
-
+<div class="footerBlock">
 {% include 'footer.html.twig' %}
-
+</div>
 {% endblock %}

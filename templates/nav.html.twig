@@ -22,7 +22,6 @@
             {% if is_granted('ROLE_ADMIN') %}
               <li><a href="{{ path('admin_accueil') }}">Section Admin</a></li>
             {% endif %}
-            <li><a href="{{path('accueil')}}">Accueil</a></li>
             <li><a href="{{path('carte')}}">Carte</a></li>
             <li><a href="{{path('reservation')}}">Reserver</a></li>
             {% if app.user %}
@@ -35,7 +34,7 @@
         </nav>
 
       </div>
-        <div class="header-text">
+        <div class="header">
           <h1 class="title" >Quai Antique Chambéry</h1>
         </div>
   </div>

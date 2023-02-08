@@ -5,7 +5,7 @@
   padding: 0;
 }
 html{
-  font-size: 20px;
+  font-size: 16px;
 }
 
 body {
@@ -72,11 +72,6 @@ div.menu-pane {
   transition: 0.6s ease-in-out;
 }
 
-.menu-pane p {
-  color: black;
-  font-size: 0.5em;
-}
-
 .menu-pane nav {
   padding: 15% 50%;
 }
@@ -94,15 +89,8 @@ div.menu-pane {
   padding-top: 20px;
   padding-bottom: 20px;
   margin-left: 10px;
-    font-size: 1em;
+  font-size: 1.2em;
 }
-
-
-.menu-pane li:first-child {
-  font-size: 1.3em;
-  margin-left: -10px;
-}
-
 
 .menu-links li a {
   color: white;
@@ -160,15 +148,46 @@ input.hamburger-checkbox {
 /*-------login--------*/
 
 .carte-log{
-  width: 400px;
+  font-size: 1.2em;
+  width: 18%;
   height: auto;
   box-shadow: 0 10px 30px rgba(0,0,0,0.4);
   text-align: center;
-  position: absolute;
-  margin: 50px 0 200px 500px;
+  position: relative;
+  margin: auto;
+  margin-top: 3%;
+  padding-bottom: 2%;
 }
-/*-------header-----*/
-.header-text {
+.wooden-button-log{
+  background-color: #8B5E3C;
+  color: white;
+  font-family:'Libre Caslon Text';
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px #7A7A7A;
+  text-shadow: 1px 1px #7A7A7A;
+  font-size: 20px;
+  cursor: pointer;
+  margin: auto;
+  transition: all 0.3s;
+}
+.wooden-button-log:hover {
+  background-color: #664C28;
+  box-shadow: 3px 3px 3px #7A7A7A;
+
+}
+/*-------Register--------*/
+.register{
+  font-size: 1.4em;
+  width: 32%;
+}
+
+/*-------Reservation---------*/
+.reservation{
+  width: 30%;
+}
+/*----------header----------*/
+.header {
   display: block;
   width: 100%;
   height: 350px;
@@ -179,7 +198,7 @@ input.hamburger-checkbox {
   background-position-y:50%;
 }
 .title{
-  font-size: 80px;
+  font-size: 4.5em;
   text-align:center;
   font-weight: 900;
   padding-top: 100px;
@@ -187,35 +206,45 @@ input.hamburger-checkbox {
   font-family: 'Libre Caslon Text', Helvetica, sans-serif;
 }
 .presentation{
-  font-size: 35px;
+  font-size: 2em;
   margin: auto;
   color: white;
   max-width: 90%;
+}
+@media screen and (max-width: 2000px) {
+  .presentation {
+    max-width: 100%;
+    font-size: 2.5em;
+  }
+  .title{
+    font-size: 5em;
+  }
 }
 @media screen and (max-width: 1300px) {
   .presentation {
     max-width: 80%;
   }
 }
-@media screen and (max-width: 1000px) {
-  .header-text {
-    height: 400px;
+@media screen and (max-width: 550px) {
+  .header {
+    height: 800px;
   }
   .title{
-    font-size: 50px;
+    font-size: 5em;
     font-weight: 800;
-    padding-top: 150px;
+    padding-top: 300px;
   }
   .presentation{
-    font-size: 45px;
+    font-size: 3em;
+    max-width: 100%;
   }
 }
 @media screen and (max-width: 550px) {
-  .header-text {
+  .header {
     height: 500px;
   }
   .title {
-    font-size: 60px;
+    font-size: 4em;
   }
     .presentation{
       font-size: 18px;
@@ -291,7 +320,7 @@ input.hamburger-checkbox {
   border-radius: 5px;
   box-shadow: 2px 2px 2px #7A7A7A;
   text-shadow: 1px 1px #7A7A7A;
-  font-size: 20px;
+  font-size: 1.2em;
   cursor: pointer;
   margin: 20px 0 10px 44%;
   transition: all 0.3s;
@@ -305,12 +334,20 @@ input.hamburger-checkbox {
   .wooden-button {
     padding: 40px 60px;
     border-radius: 10px;
-    font-size: 30px;
+    font-size: 2em;
+    margin-left: 35%;
+  }
+}
+@media screen and (max-width: 550px) {
+  .wooden-button {
+    padding: 40px 60px;
+    font-size: 3em;
+    margin-left: 30%;
   }
 }
 /*----------------Carte---------------------*/
 .carte{
-  max-width: 1100px;
+  max-width: 70%;
   margin: 0 auto;
   padding: 50px 14px;
   position: relative;
@@ -319,12 +356,12 @@ input.hamburger-checkbox {
   background-color:bisque;
 }
 .titleCarte{
-  font-size: 60px;
+  font-size: 4em;
   margin-bottom: 5%;
   color: #8B5E3C;
 }
 .titleCategory{
-  font-size:xx-large;
+  font-size:2em;
   margin: 0;
   border-top: 5px outset #712E1E;
   color: #8B5E3C;
@@ -348,42 +385,59 @@ input.hamburger-checkbox {
 .price{
   font-weight:bold;
 }
-
+@media screen and (max-width: 1000px) {
+  .carte {
+    
+  }
+}
 /*-------------Footer-----------*/
 h2{
-  font-size: 14px;
+  font-size: 1.4em;
   font-weight:bold;
-  
+  font-family: 'ROBOTO', Helvetica, sans-serif;
 }
 .footerBlock{
   position: relative;
   width: 50%;
-  margin: 10px 0% 15% 32%;
+  margin: 2% 0% 15% 40%;
+  background-color: #8B5E3C;
+
 }
 .footer{
-  width: 500px;
+  width: 40%;
   height: 100%;
-  font-size: 10px;
+  font-size: 0.8em;
   text-align: center;
-  margin: 5% 0% 0 0;
   position: absolute;
+  background-color: #8B5E3C;
 }
-@media screen and (max-width: 1300px) {
+
+@media screen and (max-width: 1000px) {
+  h2{
+    margin-left: 80%;
+    font-size: 1em;
+    width: 100%;
+  }
   .footer{
-    font-size: 18px;
-    margin-right: 50%;
+    font-size: 1.4em;
+    text-align: center;
   }
   .footerBlock{
-    margin: 10px 0% 30% 25%;
+    position: relative;
+    width: 50%;
+    margin: 2% 0% 15% 25%;
   }
 }
-  @media screen and (max-width: 1000px) {
-    .footerBlock{
-      margin: 10px 0% 30% 25%;
-    }
-}
 @media screen and (max-width: 550px) {
+  h2{
+    font-size: 1.5em;
+  }
   .footer{
-    font-size: 25px;
+    font-size: 1.5em;
+  }
+  .footerBlock{
+    position: relative;
+    width: 50%;
+    margin: 2% 0% 15% 15%;
   }
 }

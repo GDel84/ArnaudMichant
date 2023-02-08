@@ -161,89 +161,60 @@ function getDispo(){
     });
 }
 
-{# function getPlace(){
-    $.ajax({
-            url: "/getplace",
-            type: "POST",
-            data: {"place": $('#selectPax').val()},
-            dataType:'json',
-            success: function (response) {
-                var place = response;
-                console.log(place);
-                
-
-                //var userInput = $("#selectPax").val();
-                //console.log("Valeur saisie : " + userInput);
-
-                
-            },
-                
-
-            //$('#textPax').prop( "hidden", false )
-            //$('#textPax').prop( "disabled", false );
-
-            error: function(error){
-                console.log("Something went wrong", error);
-            }
-        });
-    } #}
 
     
         
 </script>
 {% endblock %}
-<div class="carte-log">
+<div class="carte-log reservation">
 <h1>Reservation</h1>
 
-<section class="container">
-    <div class="row">
-        <div class="col">
             <form action="{{ path('reservation') }}" method="POST">
                 {# <input type="text" id="reservations_form_Name" name="reservations_form[Name]" required="required" class="form-control"> #}
                 <div>
                     <label for="name">Nom :</label>
-                    <input type="text" id="name" name="user_name" value="{% if user %}{{user.name}}{% endif %}">
+                    <input class="form-control" type="text" id="name" name="user_name" value="{% if user %}{{user.name}}{% endif %}">
                 </div>
 
                 <div>
                     <label for="LastName">Prénom :</label>
-                    <input type="text" id="LastName" name="user_LastName">
+                    <input class="form-control" type="text" id="LastName" name="user_LastName">
                 </div>
 
                 <div>
                     <label for="email">E-mail :</label>
-                    <input type="text" id="eamil" name="user_email" value="{% if user %}{{ user.email}}{% endif %}">
+                    <input class="form-control" type="text" id="eamil" name="user_email" value="{% if user %}{{ user.email}}{% endif %}">
                 </div>
                 <div>
                     <label for="schedule">Allergène :</label>
-                    <input type="text" id="" name="user_scheduled" value="{% if user %}{{ user.mentionsAllergene}}{% endif %}">
+                    <input class="form-control" type="text" id="" name="user_scheduled" value="{% if user %}{{ user.mentionsAllergene}}{% endif %}">
                 </div>
 
                 <div>
                     <label for="schedule">Date :</label>
-                    <input type="date" id="scheduledDate" name="user_scheduled" onChange="getDate()">
+                    <input class="form-control" type="date" id="scheduledDate" name="user_scheduled" onChange="getDate()">
                 </div>
 
                 <div>
                     <label for="time" id="labelTime">Horaire :</label>
-                    <select name="time" id="time-select" onChange="getDispo()">
+                    <select class="form-control" name="time" id="time-select" onChange="getDispo()">
                     </select>
                 </div>
 
                 <div id="Pax">
                     <label for="nbcouverts">Nombre de personne :</label>
-                    <select  name="nbcouverts" id="selectPax"></select>
+                    <select  class="form-control" name="nbcouverts" id="selectPax"></select>
                 </div>
 
                 <div class="" id="msgError" name="" >
                     <p id="msgErrorText"></p>
                 </div>
 
-                <button type="submit" class="btn btn-secondary" id="btn-resa" name="">Reserver</button>
+                <button type="submit" class="wooden-button-log" id="btn-resa" name="">Reserver</button>
             </form>
-        </div>
+        
     </div>
-</section>
-{% include 'footer.html.twig' %}
-
+<div class="footerBlock">
+    {% include 'footer.html.twig' %}
+</div>
 {% endblock %} 
