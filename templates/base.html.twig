@@ -17,15 +17,16 @@
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
             <link rel="stylesheet" href="{{ asset('css/style.css')}}">
+            <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+            <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Roboto:wght@100&display=swap" rel="stylesheet">
         {% endblock %}
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     </head>
     <body>
     {% include 'nav.html.twig' %}
-        {% block body %}{% endblock %}
-        {% block customJS %}{% endblock %}
-    </body>
-    <footer>
-        {% include 'footer.html.twig' %}
-    </footer>
+    {% block body %}
+
+    {% endblock %}
+    {% block customJS %}{% endblock %}
+    </bdy>
 </html>
