@@ -1,6 +1,28 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-<h1>la carte</h1>
+<div class="carte">
+<h1 class="titleCarte">Notre Carte</h1>
 
-
+{% for category in categorys %}
+      <p class="titleCategory">{{ category.title }}</p>
+      <span class="descriptionCategory">{{ category.description }}</span>
+    <ul>
+    {% for product in category.products %}
+        <li class="carteBorder">
+        <div class="product">
+            <span class="titleProduct">{{ product.title }}</span> - 
+            <span class="descriptionProduct">{{ product.description }}</span> - 
+            <span class="price">{{ product.prices }}€</span>
+        </div>
+        </li>
+    {% endfor %}
+    </ul>
+{% endfor %}
+</div>
+<a href="{{path('reservation')}}">
+    <button  class="wooden-button">Réserver</button>
+</a>
+<div class="footerBlock">
+    {% include 'footer.html.twig' %}
+</div>
 {% endblock %} 
