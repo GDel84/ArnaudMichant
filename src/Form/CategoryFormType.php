@@ -24,6 +24,7 @@ class CategoryFormType extends AbstractType
                     'class' => 'form-control'
                 ],
                 ])
+            ->add('CategoryOrder')
             ->add('IsMenu')
         ;
     }
