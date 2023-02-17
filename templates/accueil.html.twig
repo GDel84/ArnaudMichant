@@ -1,13 +1,18 @@
 {% extends 'base.html.twig' %}
 {% block body %}
+{% for message in app.flashes('notice') %}
+        <div class="flash-notice">
+            {{ message }}
+        </div>
+{% endfor %}
 <ul class="gallery">
-  <div class="presentation">
+<div class="presentation">
   <p>Le Chef Arnaud Michant aime passionnément les produits et producteurs de la Savoie.<br> 
   C’est pourquoi il a décidé d’ouvrir son troisième restaurant à Chambéry  "Quai Antique".<br> 
   Le Quai Antique vous proposera au déjeuner comme au dîner une expérience gastronomique, <br> 
   à travers une cuisine sans artifice.
   </p>
-  </div>
+</div>
   {% for picture in pictures %}
     <li>
       <img src={{asset('../uploads/picture/' ~ picture.picture)}}>
@@ -18,7 +23,6 @@
 <a href="{{path('reservation')}}">
     <button  class="wooden-button">Réserver</button>
 </a>
-<div class="footerBlock">
   {% include 'footer.html.twig' %}
-</div>
+
 {% endblock %} 
