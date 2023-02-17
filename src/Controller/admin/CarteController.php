@@ -17,7 +17,7 @@ class CarteController extends AbstractController
     {
         return $this->render('admin/carte/admin-carte.html.twig', [
             'products' => $productRepo->findAll(),
-            'categorys' => $categoryRepo->findAll(),
+            'categorys' => $categoryRepo->findBy(array(),array('CategoryOrder'=>'asc')),
         ]);
     }
 }
