@@ -27,13 +27,10 @@ class ScheduleController extends AbstractController
         public function ScheduleCreate(ManagerRegistry $doctrine, Request $request, SluggerInterface $slugger)
         {
             $horaires = new Schedule;
-    
             $form = $this->createForm(ScheduleFormType::class, $horaires);
-    
             $form->handleRequest($request);
     
             if($form->isSubmitted() && $form->isValid()){
-    
                     $em = $doctrine->getManager();
                     $em->persist($horaires);
                     $em->flush();
@@ -41,7 +38,7 @@ class ScheduleController extends AbstractController
                 return $this->redirectToRoute("admin-schedule");
             }
             return $this->render('/admin/schedule/admin-schedule-create.html.twig', [
-                'form' => $form->createView()
+                'schedule' => $form->createView()
             ]);
         }
 
@@ -51,7 +48,6 @@ class ScheduleController extends AbstractController
         $horaireRepo = $doctrine->getRepository(Schedule::class);
         $horaire = $horaireRepo->findOneBy(['id'=>$id]);
         $form = $this->createForm(ScheduleFormType::class, $horaire);
-
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
@@ -63,7 +59,7 @@ class ScheduleController extends AbstractController
         }
 
         return $this->render('admin/schedule/admin-schedule-edit.html.twig', [
-            'form' => $form->createView()
+            'schedule' => $form->createView()
         ]);
     }
     #[Route('/admin/schedule/delete/{id}', name: 'admin-schedule-delete')]
