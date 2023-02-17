@@ -13,8 +13,6 @@ body {
   background-color: #D2B48C;
 	width: 100%;
 }
-
-
 .hamburger-icon {
   position: absolute;
   z-index: 100;
@@ -73,7 +71,7 @@ div.menu-pane {
 }
 
 .menu-pane nav {
-  padding: 15% 50%;
+  padding: 18% 50%;
 }
 
 .menu-links li, a, span {
@@ -90,47 +88,13 @@ div.menu-pane {
   padding-bottom: 20px;
   margin-left: 10px;
   font-size: 1.2em;
+  list-style-type: none;
 }
 
 .menu-links li a {
   color: white;
   text-decoration: none;
   font-family: 'Libre Caslon Text', Helvetica, sans-serif;
-}
-
-
-.menu-links li:hover a {
-  color: #D2B48C;
-}
-
-.menu-links li:first-child:hover a {
-  color: black;  
-  background-color: #D2B48C;
-}
-
-#QC-info {
-  background-color: #D2B48C;
-  border: 2px solid;
-  border-color: #D2B48C;
-  display: block;
-  opacity: 0;
-  
-}
-
-.menu-links li:first-child:hover #QC-info {
-  opacity: 1;
-}
-
-.menu-links li:first-child:hover #DC-info {
-  opacity: 1;
-}
-
-#DC-info {
-  background-color: #D2B48C;
-  border: 2px solid;
-  border-color: #D2B48C;
-  display: block;
-  opacity: 0;
 }
 .menu-links li:first-child a {
   padding: 5px;
@@ -145,11 +109,45 @@ input.hamburger-checkbox {
   opacity: 0;
   height: 6vh;
 }
+@media screen and (max-width: 1300px) {
+  .menu-pane nav {
+    padding: 28% 45%;
+  }
+}
+@media screen and (max-width: 1000px) {
+  div.menu-pane {
+    width: 30vw;
+  }
+  .menu-pane nav {
+    padding: 34% 45%;
+  }
+}
+@media screen and (max-width: 800px) {
+  div.menu-pane {
+    width: 40vw;
+  }
+  .menu-pane nav {
+    padding: 25% 45%;
+  }
+}
+@media screen and (max-width: 550px) {
+  div.menu-pane {
+    width: 50vw;
+  }
+  .menu-pane li {
+    padding-top: 10px;
+    padding-bottom: 15px;
+    margin-left: 0px;
+  }
+  .menu-pane nav {
+    padding: 35% 30%;
+  }
+}
 /*-------login--------*/
 
 .carte-log{
   font-size: 1.2em;
-  width: 18%;
+  width: 30%;
   height: auto;
   box-shadow: 0 10px 30px rgba(0,0,0,0.4);
   text-align: center;
@@ -157,6 +155,8 @@ input.hamburger-checkbox {
   margin: auto;
   margin-top: 3%;
   padding-bottom: 2%;
+  font-family:'Libre Caslon Text', Helvetica, sans-serif;
+
 }
 .wooden-button-log{
   background-color: #8B5E3C;
@@ -166,25 +166,159 @@ input.hamburger-checkbox {
   border-radius: 5px;
   box-shadow: 2px 2px 2px #7A7A7A;
   text-shadow: 1px 1px #7A7A7A;
-  font-size: 20px;
+  font-size: 1.2em;
   cursor: pointer;
   margin: auto;
   transition: all 0.3s;
+  margin: 4% 0;
 }
 .wooden-button-log:hover {
   background-color: #664C28;
   box-shadow: 3px 3px 3px #7A7A7A;
 
 }
+@media screen and (max-width: 1000px) {
+  .carte-log {
+    width: 45%;
+  }
+}
+@media screen and (max-width: 800px) {
+  .carte-log {
+    width: 60%;
+  }
+}
+@media screen and (max-width: 550px) {
+  .carte-log {
+    width: 70%;
+  }
+}
+/*--------Compte-------*/
+.compte{
+  font-size: 1.4em;
+  font-family:'Libre Caslon Text', Helvetica, sans-serif;
+}
+.change{
+  font-size: 0.8em;
+}
+@media screen and (max-width: 2100px) {
+  .compte {
+    width: 15%;
+  }
+}
+@media screen and (max-width: 2000px) {
+  .compte {
+    width: 16%;
+  }
+}
+@media screen and (max-width: 1800px) {
+  .compte {
+    width: 17%;
+  }
+}
+@media screen and (max-width: 1700px) {
+  .compte {
+    width: 18%;
+  }
+}
+@media screen and (max-width: 1600px) {
+  .compte {
+    width: 20%;
+  }
+}
+@media screen and (max-width: 1500px) {
+  .compte {
+    width: 21%;
+  }
+}
+@media screen and (max-width: 1400px) {
+  .compte {
+    width: 22%;
+  }
+}
+@media screen and (max-width: 1300px) {
+  .compte {
+    width: 24%;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .compte {
+    width: 26%;
+  }
+}
+@media screen and (max-width: 1100px) {
+  .compte {
+    width: 30%;
+  }
+}
+@media screen and (max-width: 1000px) {
+  .compte {
+    width: 35%;
+  }
+
+}
+@media screen and (max-width: 900px) {
+  .compte {
+    width: 39%;
+  }
+}
+@media screen and (max-width: 800px) {
+  .compte {
+    width: 44%;
+  }
+}
+@media screen and (max-width: 700px) {
+  .compte {
+    width: 50%;
+  }
+}
+@media screen and (max-width: 600px) {
+  .compte {
+    width: 58%;
+  }
+}
+@media screen and (max-width: 550px) {
+  .compte {
+    width: 65%;
+  }
+}
 /*-------Register--------*/
 .register{
   font-size: 1.4em;
   width: 32%;
 }
+@media screen and (max-width: 1200px) {
+  .register {
+    width: 40%;
+  }
+}
+@media screen and (max-width: 1000px) {
+  .register {
+    width: 50%;
+  }
+}
+@media screen and (max-width: 800px) {
+  .register {
+    width: 60%;
+  }
+}
+@media screen and (max-width: 550px) {
+  .register {
+    width: 70%;
+  }
+}
 
 /*-------Reservation---------*/
 .reservation{
-  width: 30%;
+  width: 35%;
+  font-family: 'Libre Caslon Text', Helvetica, sans-serif;
+}
+.pointRed{
+  color: red;
+}
+@media screen and (max-width: 550px) {
+  .reservation {
+    width: 70%;
+  }
 }
 /*----------header----------*/
 .header {
@@ -206,7 +340,7 @@ input.hamburger-checkbox {
   font-family: 'Libre Caslon Text', Helvetica, sans-serif;
 }
 .presentation{
-  font-size: 2em;
+  font-size: 1.4em;
   margin: auto;
   color: white;
   max-width: 90%;
@@ -222,34 +356,25 @@ input.hamburger-checkbox {
 }
 @media screen and (max-width: 1300px) {
   .presentation {
-    max-width: 80%;
+    max-width: 95%;
+    font-size: 2em;
   }
 }
 @media screen and (max-width: 550px) {
   .header {
-    height: 800px;
+    height: 250px;
   }
   .title{
-    font-size: 5em;
+    font-size: 2.5em;
     font-weight: 800;
-    padding-top: 300px;
+    padding-top: 100px;
   }
   .presentation{
-    font-size: 3em;
+    font-size: 1.0em;
     max-width: 100%;
   }
 }
-@media screen and (max-width: 550px) {
-  .header {
-    height: 500px;
-  }
-  .title {
-    font-size: 4em;
-  }
-    .presentation{
-      font-size: 18px;
-  }
-}
+
 /*---------La Galerie-----------*/
 
 .gallery {
@@ -303,14 +428,11 @@ input.hamburger-checkbox {
   }
 }
 @media screen and (max-width: 1000px) {
-  
   .gallery li {
     height: 300px;
   }
 }
-/*@media screen and (max-width: 550px) {
-  
-}*/
+
 /*---------Button Reservation---------*/
 .wooden-button {
   background-color: #8B5E3C;
@@ -338,11 +460,42 @@ input.hamburger-checkbox {
     margin-left: 35%;
   }
 }
+@media screen and (max-width: 800px) {
+  .wooden-button {
+    padding: 30px 50px;
+    font-size: 2em;
+    margin-left: 28%;
+  }
+}
 @media screen and (max-width: 550px) {
   .wooden-button {
-    padding: 40px 60px;
-    font-size: 3em;
-    margin-left: 30%;
+    padding: 30px 50px;
+    font-size: 2em;
+    margin-left: 28%;
+  }
+}
+@media screen and (max-width: 400px) {
+  .wooden-button {
+    margin-left: 22%;
+    padding: 30px 40px;
+
+  }
+}
+@media screen and (max-width: 350px) {
+  .wooden-button {
+    margin-left: 18%;
+    padding: 30px 40px;
+
+  }
+}
+@media screen and (max-width: 300px) {
+  .wooden-button {
+    font-size: 1.5em;
+  }
+}
+@media screen and (max-width: 250px) {
+  .wooden-button {
+    font-size: 1.2em;
   }
 }
 /*----------------Carte---------------------*/
@@ -385,59 +538,92 @@ input.hamburger-checkbox {
 .price{
   font-weight:bold;
 }
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 550px) {
   .carte {
-    
+    max-width: 85%;
+  }
+  .product{
+    margin:10px 2px;
   }
 }
 /*-------------Footer-----------*/
+.contacte{
+  position: relative;
+  margin-left: 3%;
+  height: 0%;
+  margin-top: 4%;
+}
 h2{
   font-size: 1.4em;
-  font-weight:bold;
-  font-family: 'ROBOTO', Helvetica, sans-serif;
-}
-.footerBlock{
-  position: relative;
-  width: 50%;
-  margin: 2% 0% 15% 40%;
-  background-color: #8B5E3C;
-
 }
 .footer{
-  width: 40%;
-  height: 100%;
-  font-size: 0.8em;
+  width: 25%;
+  height: 30%;
   text-align: center;
-  position: absolute;
-  background-color: #8B5E3C;
+  position: relative;
+  right: 0;
+  margin-left: 65%;
 }
+.schedule{
+  font-size: 0.8em;
 
+}
 @media screen and (max-width: 1000px) {
-  h2{
+  /*h2{
     margin-left: 80%;
     font-size: 1em;
     width: 100%;
-  }
+  }*/
   .footer{
-    font-size: 1.4em;
-    text-align: center;
+    font-size: 1.2em;
   }
-  .footerBlock{
-    position: relative;
-    width: 50%;
-    margin: 2% 0% 15% 25%;
+}
+@media screen and (max-width: 700px) {
+  .footer{
+    margin-left:58%;
   }
 }
 @media screen and (max-width: 550px) {
+  .contacte{
+    margin-left: 35%;
+  }
   h2{
+    margin-left:100px;
     font-size: 1.5em;
   }
   .footer{
-    font-size: 1.5em;
+    margin-left: 25%;
+    margin-top: 25%;
   }
-  .footerBlock{
-    position: relative;
-    width: 50%;
-    margin: 2% 0% 15% 15%;
+}
+@media screen and (max-width: 400px) {
+  h2{
+    font-size: 1em;
   }
+  .footer{
+    margin-top: 35%;
+    margin-left: 20%;
+  }
+  
+}
+@media screen and (max-width: 300px) {
+  .contacte{
+    margin-left: 25%;
+  }
+  h2{
+    font-size: 1em;
+  }
+  .footer{
+    margin-top: 40%;
+    margin-left: 5%;
+  }
+  
+}
+
+/*-------------flash-notice--------------*/
+.flash-notice{
+  font-size: 1.8em;
+  text-align: center;
+  color: #8B5E3C;
+  margin-top: 2%;
 }
