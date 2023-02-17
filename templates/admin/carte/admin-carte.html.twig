@@ -1,34 +1,30 @@
 {% extends 'admin/baseAdmin.html.twig' %}
 {% block body %}
-<div class="carte-form">
-<h1 class="title-carte">Les Categories</h1>
+<div class="carte">
+<h1 class="titleCarte">La Carte</h1>
+    <a href="{{ path("admin-category-create") }}" type="button" class="btn btn-outline-success">Ajouter une categorie</a>
+{% for category in categorys %}
+      <p class="titleCategory">{{ category.title }} </p>
+      <a href="{{ path("admin-category-edit", {id:category.id}) }}" type="button" class="btn btn-outline-primary">Modifier</a>
+      <span class="descriptionCategory">{{ category.description }}</span>
+    <table class="table table-bordered">
+        <thead> 
+            <tr>
+            </tr> 
+        </thead>
+    <tbody> 
+    {% for product in category.products %}
+        <tr>
+            <td class="titleProduct">{{ product.title }}</td> - 
+            <td class="descriptionProduct">{{ product.description }}</td> - 
+            <td class="price">{{ product.prices }}€</td>
+            <td><a href="{{ path("admin-product-edit", {id:product.id}) }}" type="button" class="btn btn-outline-primary">Modifier</a></td>
+            <td><a href="{{ path("admin-product-delete", {id:product.id}) }}" type="button" class="btn btn-outline-danger">Supprimer</a></td>
+        </tr>
+    {% endfor %}
+{% endfor %}
 
-    <a href="{{ path("admin-category-create") }}" type="button" class="btn btn-outline-success">Ajouter</a>
-        
-            <table class="table table-striped-columns">        
-
-                <thead> 
-                    <tr>
-                    <th>Nom</th>
-                    <th>Description</th>
-                    <th>Odre d'affichage</th>
-                    <th>Modifier</th>
-                    <th>Supprimer</th>
-                    </tr> 
-                </thead>
-                {% for category in categorys %}
-                <tbody> 
-                    <tr>
-                    <td>{{category.Title}}</td>
-                    <td>{{category.Description}}</td>
-                    <td>{{category.CategoryOrder}}</td>
-                    <td><a href="{{ path("admin-category-edit", {id:category.id}) }}" type="button" class="btn btn-outline-primary">Modifier</a></td>
-                    <th><a href="{{ path("admin-category-delete", {id:category.id}) }}" type="button" class="btn btn-outline-danger">Supprimer</a></td>
-                    <td><a class="btn btn-outline-primary" href="{{ path("category-move", {id:category.id, move:'haut'} ) }}"><img src="../photo/icons8-en-haut-48.png"></a></td>
-                    <td><a class="btn btn-outline-primary" href="{{ path("category-move", {id:category.id, move:'bas'} ) }}"><img src="../photo/icons8-vers-le-bas-48.png" ></a></td>
-                    </tr>
-                {% endfor %}
-                </tbody> 
-            </table>
+    </tbody>
+    </table>
 </div>
 {% endblock %} 
