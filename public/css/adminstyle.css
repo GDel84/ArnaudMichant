@@ -232,3 +232,8 @@
     margin-left: 5%;
   }
 }
+.ajoutProduct{
+  position: relative;
+  margin-bottom: 2%;
+  width: 50%;
+}

@@ -13,13 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class UserAdminController extends AbstractController
 {
-    #[Route('/user/admin', name: 'app_user_admin')]
-    public function index(): Response
-    {
-        return $this->render('user_admin/index.html.twig', [
-            'controller_name' => 'UserAdminController',
-        ]);
-    }
+
     #[Route('/admin/user', name: 'admin-user')]
     public function abonne(UserRepository $userRepo): Response
     {

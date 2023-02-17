@@ -18,7 +18,7 @@
             {{ encore_entry_link_tags('app') }}
             <link rel="stylesheet" href="{{ asset('css/adminstyle.css')}}">
         {% endblock %}
-
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
@@ -38,22 +38,22 @@
             <div class="menu-pane">
                 <nav>
                   <ul class="menu-links">
-                    <li><a href="/">
+                    <li><a href="{{ path('accueil') }}">
                         Le Site
                     </a></li>
-                    <li><a href="/admin/setups">
+                    <li><a href="{{ path('admin-setups') }}">
                         Reservation
                     </a></li>
-                    <li><a href="/admin/picture/">
+                    <li><a href="{{ path('admin-picture') }}">
                         Photo
                     </a></li>
-                    <li><a href="/admin/carte">
+                    <li><a href="{{ path('admin-carte') }}">
                         Carte
                         </a></li>
-                    <li><a href="/admin/schedule">
+                    <li><a href="{{ path('admin-schedule') }}">
                         Horraire
                     </a></li>
-                    <li><a href="/admin/user">
+                    <li><a href="{{ path('admin-user') }}">
                       Client
                     </a></li>
                   </ul>

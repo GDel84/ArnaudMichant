@@ -2,29 +2,43 @@
 {% block body %}
 <div class="carte">
 <h1 class="titleCarte">La Carte</h1>
-    <a href="{{ path("admin-category-create") }}" type="button" class="btn btn-outline-success">Ajouter une categorie</a>
+    <a href="{{ path("admin-category-create") }}" type="button" class="btn btn-outline-success">
+        <i class="fa fa-circle-plus" ></i>
+        Ajouter une categorie
+    </a>
 {% for category in categorys %}
-      <p class="titleCategory">{{ category.title }} </p>
-      <a href="{{ path("admin-category-edit", {id:category.id}) }}" type="button" class="btn btn-outline-primary">Modifier</a>
+      <p id="{{ category.id }}" class="titleCategory">{{ category.title }} 
+        <a href="{{ path("admin-category-edit", {id:category.id}) }}" type="button" class="btn btn-outline-primary">
+            <i class="fa fa-pencil"></i>
+        </a>
+        <a href="{{ path("admin-category-delete", {id:category.id}) }}" type="button" class="btn btn-outline-danger">
+            <i class="fa fa-trash-can"></i>
+        </a></p>
       <span class="descriptionCategory">{{ category.description }}</span>
     <table class="table table-bordered">
         <thead> 
             <tr>
             </tr> 
         </thead>
-    <tbody> 
-    {% for product in category.products %}
-        <tr>
-            <td class="titleProduct">{{ product.title }}</td> - 
-            <td class="descriptionProduct">{{ product.description }}</td> - 
-            <td class="price">{{ product.prices }}€</td>
-            <td><a href="{{ path("admin-product-edit", {id:product.id}) }}" type="button" class="btn btn-outline-primary">Modifier</a></td>
-            <td><a href="{{ path("admin-product-delete", {id:product.id}) }}" type="button" class="btn btn-outline-danger">Supprimer</a></td>
-        </tr>
-    {% endfor %}
-{% endfor %}
-
-    </tbody>
+        <tbody> 
+        {% for product in category.products %}
+            <tr>
+                <td class="titleProduct">{{ product.title }}</td> 
+                <td class="descriptionProduct">{{ product.description }}</td>
+                <td class="price">{{ product.prices }}€</td>
+                <td><a href="{{ path("admin-product-edit", {id:product.id}) }}" type="button" class="btn btn-outline-primary">Modifier</a></td>
+                <td><a href="{{ path("admin-product-delete", {id:product.id}) }}" type="button" class="btn btn-outline-danger">Supprimer</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
     </table>
+    <div style="right:0;">
+        <a href="{{ path("admin-product-create", {category: category.id}) }}" class="btn btn-outline-success ajoutProduct">
+            <i class="fa fa-circle-plus"></i>
+            Ajouter un produit
+        </a>
+    </div>
+{% endfor %}
+ 
 </div>
 {% endblock %} 

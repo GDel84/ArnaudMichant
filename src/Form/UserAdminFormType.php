@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -13,7 +14,13 @@ class UserAdminFormType extends AbstractType
     {
         $builder
             ->add('email')
-            ->add('roles')
+            ->add('roles', ChoiceType::class, [
+                'choices'  => [
+                    'Adminstrateur' => 'ROLE_ADMIN',
+                    'Client' => 'ROLE_USER',
+                ],
+                'multiple' => true,
+            ])
             ->add('Name')
             ->add('firstName')
             ->add('mentionsAllergene')

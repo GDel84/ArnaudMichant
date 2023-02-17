@@ -19,7 +19,7 @@
           <ul class="menu-links">
             <li><a href="{{path('accueil')}}">Accueil</a></li>
             {% if is_granted('ROLE_ADMIN') %}
-              <li><a href="{{ path('admin_accueil') }}">Section Admin</a></li>
+              <li><a href="{{ path('admin-setups') }}">Section Admin</a></li>
             {% endif %}
             <li><a href="{{path('carte')}}">Carte</a></li>
             <li><a href="{{path('reservation')}}">Reserver</a></li>

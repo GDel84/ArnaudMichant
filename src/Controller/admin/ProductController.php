@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Category;
 use App\Entity\Product;
 use App\Form\ProductFormType;
 use Doctrine\Persistence\ManagerRegistry;
@@ -20,11 +21,13 @@ class ProductController extends AbstractController
             'controller_name' => 'produitController',
         ]);
     }
-    #[Route('/admin/product/create/', name: 'admin-product-create')]
-        public function CreateProduct(ManagerRegistry $doctrine, Request $request)
+    #[Route('/admin/product/create/{category}', name: 'admin-product-create')]
+        public function CreateProduct(ManagerRegistry $doctrine, Request $request, Category $category=null)
         {
             $product = new Product;
-    
+            if($category != null){
+                $product->setCategory($category);
+            }
             $form = $this->createForm(ProductFormType::class, $product);
     
             $form->handleRequest($request);
@@ -35,7 +38,7 @@ class ProductController extends AbstractController
                     $em->persist($product);
                     $em->flush();
 
-            return $this->redirectToRoute('admin-carte');
+            return $this->redirectToRoute('admin-carte', ['_fragment' => $category->getId()]);
 
             }
             return $this->render('/admin/product/admin-product-create.html.twig', [

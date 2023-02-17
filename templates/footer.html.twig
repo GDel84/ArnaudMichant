@@ -1,43 +1,53 @@
 
 
 <div class="contacte">
-<h3>Nous Contacter</h3>
-<p>3 rue général De Gaulle<br>
-73018 Chambery<br>
-telephone: 06 00 00 00 00<br>
-</p>
+    <h3>Nous Contacter</h3>
+    <p>3 rue général De Gaulle<br>
+    73018 Chambery<br>
+    telephone: 06 00 00 00 00<br>
+    </p>
 </div>
 <div class="footer">
 <h2>Horaire d'ouverture</h2>
-        <table class="table table-striped-columns schedule">        
-            <thead> 
-             
-            </thead>
-            <tbody> 
-                <tr>
-{% for schedule in schedules %}
-                <td>{{ weekDay[schedule.week]}}</td>
+    <table class="table table-striped-columns schedule"> 
+           <tr>
+                {% for schedule in schedules %}
+                    <td>{{ weekDay[schedule.week]}}</td>
+                {% endfor %}
+            </tr>
+           <tr>
+                {% for schedule in schedules %}
+                    <td>
+                        {% if (schedule.noonStartTime|date("Hi") == 0) %}
+                            Fermé
+                        {% else %}
+                            {{schedule.noonStartTime|date("H:i")}}:{{schedule.noonEndTime|date("H:i")}}
+                         {% endif %}
+                    </td>
+                {% endfor %}
+            </tr>
+            <tr>
+                {% for schedule in schedules %}
+                    <td>
+                        {% if (schedule.nightStartTime|date("Hi") == 0) %}
+                            Fermé
+                        {% else %}
+                            {{schedule.nightStartTime|date("H:i")}}:{{schedule.nightEndTime|date("H:i")}}
+                        {% endif %}
+                    </td>
+                {% endfor %}
+            </tr>
+
+
+        {# {% for schedule in schedules %}
+            <tr>
+                <td>{{  weekDay[schedule.week]}}</td>
                 <td>{{schedule.noonStartTime|date("H:i")}}</td>
                 <td>{{schedule.noonEndTime|date("H:i")}}</td>
                 <td>{{schedule.nightStartTime|date("H:i")}}</td>
                 <td>{{schedule.nightEndTime|date("H:i")}}</td>
-                </tr>
-{% endfor %}
-</tbody> 
-</table>
-{#<div class="test">
-    <h1 class="txt">Libre Caslon Text pour le nom du restaurant et les formulaires</h1>
-    <p class="txt2">Dancing Script pour la carte et le texte courant du site</p>
-    <div class="test2">
-        <button  class="wooden-button">Bouton</button>
-    </div>
-    <p class="txt">Palette de couleurs :</p>
-    <div class="flex">
-        <div class="block3">white</div>
-        <div class="block4">bisque</div>
-        <div class="block1">#D2B48C</div>
-        <div class="block2">#8B5E3C</div>
-        
-        <div class="block5">#712E1E</div>
-    </div>
-</div>#}
+            </tr>
+        {% endfor %} #}
+    </table>
+</div>
+

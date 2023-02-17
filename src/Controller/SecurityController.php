@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserFormType;
+use App\Form\UserPasswordFormType;
 use App\Repository\ScheduleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
@@ -11,10 +12,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\SecurityBundle\Security as SecurityBundleSecurity;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasher;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Security;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 
@@ -52,7 +52,7 @@ class SecurityController extends AbstractController
         
     }
 
-    #[Route('/moncompte', name: 'moncompte')]
+    #[Route('/user/moncompte', name: 'moncompte')]
     public function MonCompte(ManagerRegistry $doctrine, Request $request, Security $security, ScheduleRepository $scheduleRepo)
     {
         $user = $security->getUser();
@@ -66,40 +66,50 @@ class SecurityController extends AbstractController
             $em->flush();
         }
 
-        return $this->render('moncompte.html.twig', [
+        return $this->render('user/moncompte.html.twig', [
             'schedules' => $scheduleRepo->findAll(),
             'user' => $form->createView(),
         ]);
     }
-    #[Route('/user/edit-password/{id}', name: 'edit-password')]
-    public function editPassword(Request $request, User $user, ScheduleRepository $scheduleRepo, UserPasswordHasherInterface $hasher, EntityManagerInterface $manager)
+    #[Route('/user/edit-password', name: 'edit-password')]
+    public function editPassword(Request $request, ScheduleRepository $scheduleRepo,Security $security, UserPasswordHasherInterface $hasher, EntityManagerInterface $manager)
     {
+        $user = $security->getUser();
         $form = $this->createForm(UserPasswordFormType::class);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            if ($hasher->isPasswordValid($user, $form->getData()['password'])) {
-                $user->setPassword(
-                    $form->getData()['newPassword']
-                );
-                $this->addFlash(
-                    'success',
-                    'Le mot de passe a été modifié.'
-                );
+            $plaintextPassword = $form->get('plainPassword')->getData();
+            $user = $security->getUser();
+            $hashedPassword = $hasher->hashPassword(
+                $user,
+                $plaintextPassword
+            );
+           
+            $user->setPassword(
+                $hashedPassword
+            );
 
-                $manager->persist($user);
-                $manager->flush();
+            $this->addFlash(
+                'notice',
+                'Le mot de passe a été modifié.'
+            );
 
-                return $this->redirectToRoute('recipe.index');
-            } else {
-                $this->addFlash(
-                    'warning',
-                    'Le mot de passe renseigné est incorrect.'
-                );
-            }
+            $manager->persist($user);
+            $manager->flush();
+
+            return $this->redirectToRoute('moncompte');
+            // } else {
+            //     $this->addFlash(
+            //         'warning',
+            //         'Le mot de passe renseigné est incorrect.'
+            //     );
+            // }
         }
-        return $this->render('security/edit-password.html.twig', [
+        return $this->render('user/edit-password.html.twig', [
             'form' => $form->createView(),
+            'user'=>$user,
+            'schedules'=>$scheduleRepo->findAll(),
         ]);
     }
 }

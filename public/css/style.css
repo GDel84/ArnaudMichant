@@ -557,30 +557,54 @@ h2{
   font-size: 1.4em;
 }
 .footer{
-  width: 25%;
-  height: 30%;
+  width: 40%;
+  height: auto;
   text-align: center;
   position: relative;
-  right: 0;
-  margin-left: 65%;
+  margin-left: 50%;
 }
 .schedule{
-  font-size: 0.8em;
+  font-size: 1em;
 
 }
-@media screen and (max-width: 1000px) {
-  /*h2{
-    margin-left: 80%;
-    font-size: 1em;
-    width: 100%;
-  }*/
+@media screen and (max-width: 1200px) {
   .footer{
-    font-size: 1.2em;
+    font-size: 1em;
+    margin-left: 35%;
+  }
+}
+@media screen and (max-width: 1000px) {
+  .footer{
+    font-size: 1em;
+    margin-top: 20%;
+    margin-left: 18%;
+  }
+  h2{
+    margin-left: 40%;
+  }
+  .contacte{
+    margin-left: 40%;
+  }
+}
+@media screen and (max-width: 800px) {
+  .footer{
+    margin-top: 18%;
+    margin-left: 12%;
+  }
+  h2{
+    margin-left: 60%;
   }
 }
 @media screen and (max-width: 700px) {
   .footer{
-    margin-left:58%;
+    margin-left:5%;
+    font-size: 0.8em;
+  }
+}
+@media screen and (max-width: 600px) {
+  .footer{
+    margin-left:0%;
+    font-size: 0.8em;
   }
 }
 @media screen and (max-width: 550px) {
@@ -592,8 +616,9 @@ h2{
     font-size: 1.5em;
   }
   .footer{
-    margin-left: 25%;
-    margin-top: 25%;
+    margin-top: 30%;
+    margin-left: 0;
+    font-size: 0.7em;
   }
 }
 @media screen and (max-width: 400px) {
@@ -602,7 +627,7 @@ h2{
   }
   .footer{
     margin-top: 35%;
-    margin-left: 20%;
+    font-size: 0.5em;
   }
   
 }
@@ -610,12 +635,13 @@ h2{
   .contacte{
     margin-left: 25%;
   }
-  h2{
-    font-size: 1em;
-  }
+
   .footer{
     margin-top: 40%;
-    margin-left: 5%;
+    font-size: 0.35em;
+  }
+  h2{
+    font-size: 1em;
   }
   
 }
