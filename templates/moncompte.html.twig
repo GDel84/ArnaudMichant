@@ -1,14 +1,30 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-<h1>Mon Compte</h1>
-
-<div class="example-wrapper">
-     {{ form_start(form) }}
-     {{ form_widget(form) }}
-         <button type="submit" class="btn-login">Modifier</button>
-     {{ form_end(form) }}
-    
+<div class="carte-log compte">
+    <h1>Mon Compte</h1>
+    {{ form_start(user) }}
+        {{ form_row(user.Name, {
+            label:'Nom :'
+        }) }}
+        {{ form_row(user.firstName, {
+            label:'Prénom :'
+        }) }}
+        {{ form_row(user.email, {
+            label:'E-mail :'
+        }) }}
+        {{ form_row(user.mentionsAllergene, {
+            label:'Allergéne :'
+        }) }}
+        {{ form_row(user.nbCouverts, {
+            label:'Nombre de place favorie :'
+        }) }}
+             <button type="submit" class="wooden-button-log">Modifier</button>
+    {{ form_end(user) }}
+    <div class="">
+        <a href="">
+         <button  class="wooden-button-log change">Changer mon mot de passe</button>
+        </a>
+    </div>
 </div>
-
-
+    {% include 'footer.html.twig' %}
 {% endblock %} 

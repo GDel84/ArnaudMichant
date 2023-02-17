@@ -7,12 +7,13 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class UserFormType extends AbstractType
+class UserAdminFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('email')
+            ->add('roles')
             ->add('Name')
             ->add('firstName')
             ->add('mentionsAllergene')

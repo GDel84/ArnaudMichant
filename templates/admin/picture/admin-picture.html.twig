@@ -1,30 +1,28 @@
 {% extends 'admin/baseAdmin.html.twig' %}
 
 {% block body %}
+<a href="{{ path("admin-picture-create") }}" type="button" class="btn btn-outline-success position-absolute">Ajouter</a>
 
-<a href="{{ path("admin-picture-create") }}" type="button" class="btn btn-outline-success btn-add">Ajouter</a>
-
-{% for picture in pictures %}
-
- <section class="section-info" id="infos">
-
-
-    <a class="lien-div">
-        <div class="carte-info">
-            <div class="container-photo-info">
-
-        <a><img src={{asset('uploads/picture/' ~ picture.picture)}} width="400px" class="photo"></a>
-        {{picture.title}}
-                </div>
-        <a  class="btn btn-outline-primary" href="{{ path("admin-picture-move", {id:picture.id, move:'haut'} ) }}">monter</a>
-        <a  class="btn btn-outline-primary" href="{{ path("admin-picture-move", {id:picture.id, move:'bas'} ) }}">dessendre</a>
-        <a href="{{ path("admin-picture-modifier", {id:picture.id} ) }}" class="btn btn-outline-primary">modifer</a>
-        <a href="{{ path("admin-picture-delete", {id:picture.id} ) }}" class="btn btn-outline-danger">suprimer</a>
-
+<div class="user">
+    <div class="shadow mb-4">
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                </thead>
+                <tbody> 
+                {% for picture in pictures %}
+                <tr>
+                <td><img src={{asset('uploads/picture/' ~ picture.picture)}} width="300px" height="200px" class="photo"></td>
+                <td>{{picture.title}}</td>
+                <td><a  class="btn btn-outline-primary" href="{{ path("admin-picture-move", {id:picture.id, move:'haut'} ) }}">monter</a></td>
+                <td><a  class="btn btn-outline-primary" href="{{ path("admin-picture-move", {id:picture.id, move:'bas'} ) }}">dessendre</a></td>
+                <td><a href="{{ path("admin-picture-modifier", {id:picture.id} ) }}" class="btn btn-outline-primary">modifer</a></td>
+                <td><a href="{{ path("admin-picture-delete", {id:picture.id} ) }}" class="btn btn-outline-danger">suprimer</a></td>
+                </tr>
+                {% endfor %}
+                </tbody> 
+            </table>
+        </div>
     </div>
-     </a>
-     </section>
-
-{% endfor %}
-
+</div>
 {% endblock %}

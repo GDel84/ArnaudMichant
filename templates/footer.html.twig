@@ -1,17 +1,21 @@
 
-<div class="footer">
-        <table class="table table-striped-columns">        
 
+<div class="contacte">
+<h3>Nous Contacter</h3>
+<p>3 rue général De Gaulle<br>
+73018 Chambery<br>
+telephone: 06 00 00 00 00<br>
+</p>
+</div>
+<div class="footer">
+<h2>Horaire d'ouverture</h2>
+        <table class="table table-striped-columns schedule">        
             <thead> 
-                <tr>
-                <th>Jour</th>
-                <th>Midi</th>
-                <th>Soir</th>
-                </tr> 
+             
             </thead>
-{% for schedule in schedules %}
-             <tbody> 
+            <tbody> 
                 <tr>
+{% for schedule in schedules %}
                 <td>{{ weekDay[schedule.week]}}</td>
                 <td>{{schedule.noonStartTime|date("H:i")}}</td>
                 <td>{{schedule.noonEndTime|date("H:i")}}</td>
@@ -21,3 +25,19 @@
 {% endfor %}
 </tbody> 
 </table>
+{#<div class="test">
+    <h1 class="txt">Libre Caslon Text pour le nom du restaurant et les formulaires</h1>
+    <p class="txt2">Dancing Script pour la carte et le texte courant du site</p>
+    <div class="test2">
+        <button  class="wooden-button">Bouton</button>
+    </div>
+    <p class="txt">Palette de couleurs :</p>
+    <div class="flex">
+        <div class="block3">white</div>
+        <div class="block4">bisque</div>
+        <div class="block1">#D2B48C</div>
+        <div class="block2">#8B5E3C</div>
+        
+        <div class="block5">#712E1E</div>
+    </div>
+</div>#}

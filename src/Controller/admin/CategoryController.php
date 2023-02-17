@@ -75,10 +75,9 @@ class CategoryController extends AbstractController
             $em->remove($category);
             $em->flush();
 
-        return $this->redirectToRoute("admin-carte");
+            return $this->redirectToRoute("admin-carte");
         }
-
-        #[Route('category/move/{id}/{move}', name: 'category-move')]
+    #[Route('category/move/{id}/{move}', name: 'admin-category-move')]
         public function categoryMove(ManagerRegistry $doctrine, $move, $id){
     
             $em = $doctrine->getManager();

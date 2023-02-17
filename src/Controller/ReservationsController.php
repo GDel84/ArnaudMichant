@@ -38,7 +38,8 @@ class ReservationsController extends AbstractController
             $em = $doctrine->getManager();
             $em->persist($reservation);
             $em->flush(); 
-
+            
+            $this->addFlash('notice', 'Merci votre réservation est bien prise en compte !');
             return $this->redirectToRoute('accueil');
 
         }

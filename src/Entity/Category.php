@@ -28,6 +28,9 @@ class Category
     #[ORM\OneToMany(mappedBy: 'Category', targetEntity: Product::class, orphanRemoval: true)]
     private Collection $products;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $CategoryOrder = null;
+
     public function __construct()
     {
         $this->products = new ArrayCollection();
@@ -106,6 +109,18 @@ class Category
                 $product->setCategory(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCategoryOrder(): ?int
+    {
+        return $this->CategoryOrder;
+    }
+
+    public function setCategoryOrder(?int $CategoryOrder): self
+    {
+        $this->CategoryOrder = $CategoryOrder;
 
         return $this;
     }

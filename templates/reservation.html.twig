@@ -1,248 +1,51 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-{% block customJS %}
-<script>
-$('#time-select').prop( "hidden", true );
-$('#time-select').prop( "disabled", true );
-
-$('#labelTime').prop( "hidden", true );
-$('#labelTime').prop( "disabled", true );
-
-$('#selectPax').prop( "disabled", true );
-
-$('#Pax').prop( "disabled", true );
-$('#Pax').prop( "hidden", true );
-
-$('#btn-resa').prop( "disabled", true )
-
-function showError(message){
-    $('#msgErrorText').text(message);
-    $('#msgError').prop('hidden', false);
-}
-function hideError(){
-    $('#msgError').prop('hidden', true);
-}
-
-
-function getDate(){
-    hideError();
-    $('#time-select').find('option').remove();
-    $('#time-select').find('optgroup').remove();
-    $('#selectPax').find('option').remove();
-    $('#selectPax').find('optgroup').remove();
-    $('#selectPax').prop( "disabled", true );
-    $('#Pax').prop( "hidden", true );
-    $('#btn-resa').prop( "disabled", true )
-
-
-    let dateselect = $("#scheduledDate" ).val();
-    $.ajax({
-        url: "/getdate",
-        type: "POST",
-        data: {"date": dateselect},
-        dataType:'json',
-        success: function (response) {
-            //console.log(response)
-            var noonStartTime = response['noon']['start']['date'].slice(11,13);
-            var noonEndTime = response['noon']['end']['date'].slice(11,13);
-            var nightStartTime = response['night']['start']['date'].slice(11,13);
-            var nightEndTime = response['night']['end']['date'].slice(11,13);
-            //console.log(noonStartTime, noonEndTime, nightStartTime, nightEndTime);
-
-            if(noonStartTime == '00' && noonEndTime == '00' && nightStartTime == '00' && nightEndTime == '00'){
-                showError("Le restaurant est fermer pour cette date, veillez selection une autre date.");
-            }
-
-            if(noonStartTime != '00' && noonEndTime != '00'){
-                var noonTimes = [];
-                for (let i = parseInt(noonStartTime); i < parseInt(noonEndTime); i++) {
-                    noonTimes.push(i+':00');
-                    noonTimes.push(i+':15');
-                    noonTimes.push(i+':30');
-                    noonTimes.push(i+':45');
-                }
-                noonTimes.push(response['noon']['end']['date'].slice(11,16));
-                $('#time-select').append($('<optgroup>', { label: 'Midi'}));
-                $.each(noonTimes, function (i, item) {
-                    if(noonTimes.length != i+1){
-                        $('#time-select').append($('<option>', { 
-                            value: item,
-                            text : item
-                        }));
-                    }
-                });
-            }
-
-
-            if(nightStartTime != '00' && nightEndTime != '00'){
-                var nightTimes = [];
-                for (let i = parseInt(nightStartTime); i < parseInt(nightEndTime); i++) {
-                    nightTimes.push(i+':00');
-                    nightTimes.push(i+':15');
-                    nightTimes.push(i+':30');
-                    nightTimes.push(i+':45');
-                }
-
-                nightTimes.push(response['night']['end']['date'].slice(11,16));
-                //console.log(nightTimes);
-                $('#time-select').append($('<optgroup>', { label: 'Soir'}));
-                $.each(nightTimes, function (i, item) {
-                    if(nightTimes.length != i+1){
-                        $('#time-select').append($('<option>', { 
-                            value: item,
-                            text : item
-                        }));
-                    }
-                });
-            }
-
-            $('#labelTime').prop( "disabled", false )
-            $('#labelTime').prop( "hidden", false );
-                
-            $('#time-select').prop( "disabled", false )
-            $('#time-select').prop( "hidden", false );
-
-        },
-        error: function(error){
-            console.log("Something went wrong", error);
-        }
-    });
-}
-
-
-function getDispo(){
-    hideError();
-    $('#selectPax').find('option').remove();
-    $('#selectPax').find('optgroup').remove();
-
-    $('#btn-resa').prop( "disabled", true )
-
-    $.ajax({
-        url: "/getdispo",
-        type: "POST",
-        data: {"date":$('#scheduledDate').val(), "time":$('#time-select').val()},
-        dataType:'json',
-        success: function (response) {
-            var placeDispo = response['dispo'];
-            console.log(placeDispo);
-            
-            if(placeDispo === 0){
-                showError("Désolé nous sommes complet pour ce service");
-                $('#btn-resa').prop( "disabled", true );
-            }  else {
-                $('#Pax').prop( "hidden", false );
-                $('#selectPax').prop( "disabled", false );
-            }
-
-            $('#selectPax').append($('<optgroup>', { label: 'Place Disponible'}));
-            let nbCouvert=0;
-
-            {% if user %}
-                nbCouvert = {{user.nbcouverts|raw}};
-            {% endif %}
-
-            for (let i = 1; i <= placeDispo; i++) {
-                let option = '<option>';
-                $('#selectPax').append($(option, { 
-                    value: i,
-                    text : i
-                }));
-                if (nbCouvert == i){
-                    $('#selectPax').val(i).change();
-                }
-            }
-            
-            $('#btn-resa').prop( "disabled", false )
-            
-        },
-        error: function(error){
-            console.log("Something went wrong", error);
-        }
-    });
-}
-
-{# function getPlace(){
-    $.ajax({
-            url: "/getplace",
-            type: "POST",
-            data: {"place": $('#selectPax').val()},
-            dataType:'json',
-            success: function (response) {
-                var place = response;
-                console.log(place);
-                
-
-                //var userInput = $("#selectPax").val();
-                //console.log("Valeur saisie : " + userInput);
-
-                
-            },
-                
-
-            //$('#textPax').prop( "hidden", false )
-            //$('#textPax').prop( "disabled", false );
-
-            error: function(error){
-                console.log("Something went wrong", error);
-            }
-        });
-    } #}
-
-    
-        
-</script>
-{% endblock %}
-<div class="carte-log">
+<div class="carte-log reservation">
 <h1>Reservation</h1>
 
-<section class="container">
-    <div class="row">
-        <div class="col">
             <form action="{{ path('reservation') }}" method="POST">
-                {# <input type="text" id="reservations_form_Name" name="reservations_form[Name]" required="required" class="form-control"> #}
                 <div>
-                    <label for="name">Nom :</label>
-                    <input type="text" id="name" name="user_name" value="{% if user %}{{user.name}}{% endif %}">
+                    <label for="name">Nom<span class="pointRed">*</span> :</label>
+                    <input onChange="checkForm()" class="form-control" type="text" id="name" name="user_name" value="{% if user %}{{user.name}}{% endif %}">
                 </div>
 
                 <div>
-                    <label for="LastName">Prénom :</label>
-                    <input type="text" id="LastName" name="user_LastName">
+                    <label for="LastName">Prénom<span class="pointRed">*</span> :</label>
+                    <input onChange="checkForm()" class="form-control" type="text" id="LastName" name="user_LastName">
                 </div>
 
                 <div>
-                    <label for="email">E-mail :</label>
-                    <input type="text" id="eamil" name="user_email" value="{% if user %}{{ user.email}}{% endif %}">
+                    <label for="email">E-mail<span class="pointRed">*</span> :</label>
+                    <input onChange="checkForm()" class="form-control" type="text" id="email" name="user_email" value="{% if user %}{{ user.email}}{% endif %}" placeholder="mail@gmail.fr">
                 </div>
                 <div>
-                    <label for="schedule">Allergène :</label>
-                    <input type="text" id="" name="user_scheduled" value="{% if user %}{{ user.mentionsAllergene}}{% endif %}">
-                </div>
-
-                <div>
-                    <label for="schedule">Date :</label>
-                    <input type="date" id="scheduledDate" name="user_scheduled" onChange="getDate()">
+                    <label onclick="alert('bla')" for="schedule">Allergène :</label>
+                    <input class="form-control" type="text" id="" name="user_scheduled" value="{% if user %}{{ user.mentionsAllergene}}{% endif %}" placeholder="Vos allergène">
                 </div>
 
                 <div>
-                    <label for="time" id="labelTime">Horaire :</label>
-                    <select name="time" id="time-select" onChange="getDispo()">
+                    <label for="schedule">Date<span class="pointRed">*</span> :</label>
+                    <input class="form-control" type="date" id="scheduledDate" name="user_scheduled" onChange="getDate()">
+                </div>
+
+                <div>
+                    <label for="time" id="labelTime">Horaire<span class="pointRed">*</span> :</label>
+                    <select class="form-control" name="time" id="time-select" onChange="getDispo()">
                     </select>
                 </div>
 
                 <div id="Pax">
-                    <label for="nbcouverts">Nombre de personne :</label>
-                    <select  name="nbcouverts" id="selectPax"></select>
+                    <label for="nbcouverts">Nombre de personne<span class="pointRed">*</span> :</label>
+                    <select  onChange="checkForm()" class="form-control" name="nbcouverts" id="selectPax" value="{% if user %}{{user.nbcouverts|raw}}{% endif %}"></select>
                 </div>
 
                 <div class="" id="msgError" name="" >
                     <p id="msgErrorText"></p>
                 </div>
 
-                <button type="submit" class="btn btn-secondary" id="btn-resa" name="">Reserver</button>
+                <button type="submit" class="wooden-button-log" id="btn-resa" name="">Reserver</button>
             </form>
-        </div>
+        
     </div>
-</section>
-
+    {% include 'footer.html.twig' %}
 {% endblock %} 
