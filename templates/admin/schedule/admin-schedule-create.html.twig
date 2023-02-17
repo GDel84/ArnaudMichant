@@ -2,12 +2,24 @@
 
 {% block body %}
 <div class="carte-form">
-<h1>Crée horraire</h1>
-
-            {{ form_start(form) }}
-            {{ form_widget(form) }}
-                <button type="submit" class="btn btn-primary">Ajouter</button>
-            {{ form_end(form) }}
-        
+    <h1>Crée horraire</h1>
+    {{ form_start(schedule) }}
+        {{ form_row(schedule.week, {
+        label:'Jour :'
+        }) }}
+        {{ form_row(schedule.noonStartTime, {
+            label:'Ouverture du midi :'
+        }) }}
+        {{ form_row(schedule.noonEndTime, {
+            label:'Fermeture du midi :'
+        }) }}
+        {{ form_row(schedule.nightStartTime, {
+            label:'Ouverture du soir :'
+        }) }}
+        {{ form_row(schedule.nightEndTime, {
+            label:'Fermeture du soir :'
+        }) }}
+            <button type="submit" class="btn btn-primary">Valider</button>
+    {{ form_end(schedule) }}     
 </div>
 {% endblock %} 

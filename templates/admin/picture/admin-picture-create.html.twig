@@ -1,15 +1,18 @@
 {% extends 'admin/baseAdmin.html.twig' %}
 {% block body %}
 <div class="carte-form">
-<h1>Ajouté une photo</h1>
-
-
-{{ form_start(pictureForm) }}
-    {{ form_row(pictureForm.title, {
-            label:'Titre'
+    <h1>Ajouté une photo</h1>
+    {{ form_start(pictureForm) }}
+        {{ form_row(pictureForm.title, {
+        label:'Nom :'
         }) }}
-
-    {{ form_row(pictureForm) }}
-{{ form_end(pictureForm) }}
+       {{ form_row(pictureForm.picture, {
+        label:'Image :'
+        }) }}
+        {{ form_row(pictureForm.pictureOrder, {
+        label:'Ordre de la photo :'
+        }) }}
+        <button type="submit" class="btn btn-primary">Valider</button>
+    {{ form_end(pictureForm) }}
 </div>
 {% endblock %} 
