@@ -17,8 +17,7 @@
         
         <nav>
           <ul class="menu-links">
-            <li><a href="{{path('accueil')}}">Quai Antique</a>
-            </li>
+            <li><a href="{{path('accueil')}}">Accueil</a></li>
             {% if is_granted('ROLE_ADMIN') %}
               <li><a href="{{ path('admin_accueil') }}">Section Admin</a></li>
             {% endif %}
@@ -35,7 +34,7 @@
 
       </div>
         <div class="header">
-          <h1 class="title" >Quai Antique Chambéry</h1>
+          <h1 class="title" >Quai Antique</h1>
         </div>
   </div>
 
