@@ -1,0 +1,38 @@
+{% extends 'admin/baseAdmin.html.twig' %}
+{% block body %}
+<!-- Begin Page Content -->
+<div class="user">
+    <h1 class="h3 mb-2 text-gray-800">Clients</h1>
+    <div class="shadow mb-4">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Prénom</th>
+                            <th>email</th>
+                            <th>Allergene</th>
+                            <th>Couverts</th>
+                        </tr> 
+                    </thead>
+                    <tbody> 
+                    {% for user in users %}
+                        <tr>
+                            <td>{{user.Name}}</td>
+                            <td>{{user.firstName}}</td>
+                            <td>{{user.email}}</td>
+                            <td>{{user.mentionsAllergene}}</td>
+                            <td>{{user.nbCouverts}}</td>
+                            <td>{{user.roles [0]}}</td>
+                            <td><a href="{{ path("admin-user-edit", {id:user.id}) }}" type="button" class="btn btn-outline-primary">Modifier</a></td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %} 

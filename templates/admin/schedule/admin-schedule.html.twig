@@ -2,40 +2,40 @@
 
 {% block body %}
 
-<div class="carte-form">
-<h1>Horraire du restautant</h1>
-
-
+<div class="user">
+    <h1 class="h3 mb-2 text-gray-800">Horraire du restautant</h1>
     <a href="{{ path("admin-schedule-create") }}" type="button" class="btn btn-outline-success">Ajouter</a>
-
-    <div class="deco left">
-        <table class="table table-striped-columns">        
-
-            <thead> 
-                <tr>
-                    <th>Jour</th>
-                    <th>Midi</th>
-                    <th>fermeture Midi</th>
-                    <th>Soir</th>
-                    <th>fermeture soir</th>
-                    <th>Modifier</th>
-                    <th>Supprimer</th>
-                </tr> 
-            </thead>
-            {% for schedule in schedules %}
-            <tbody> 
-                <tr>
-                    <td>{{ weekDay[schedule.week]}}</td>
-                    <td>{{schedule.noonStartTime|date("H:i")}}</td>
-                    <td>{{schedule.noonEndTime|date("H:i")}}</td>
-                    <td>{{schedule.nightStartTime|date("H:i")}}</td>
-                    <td>{{schedule.nightEndTime|date("H:i")}}</td>
-                    <th><a href="{{ path("admin-schedule-edit", {id:schedule.id}) }}" type="button" class="btn btn-outline-primary">Modifier</a></th>
-                    <th><a href="{{ path("admin-schedule-delete", {id:schedule.id}) }}" type="button" class="btn btn-outline-danger">Supprimer</a></th>
-                </tr>
-            {% endfor %}
-            </tbody> 
-        </table>
+    <div class="shadow mb-4">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped-columns">        
+                    <thead> 
+                        <tr>
+                            <th>Jour</th>
+                            <th>Midi</th>
+                            <th>fermeture Midi</th>
+                            <th>Soir</th>
+                            <th>fermeture soir</th>
+                            <th>Modifier</th>
+                            <th>Supprimer</th>
+                        </tr> 
+                    </thead>
+                    <tbody>
+                    {% for schedule in schedules %}
+                        <tr>
+                            <td>{{ weekDay[schedule.week]}}</td>
+                            <td>{{schedule.noonStartTime|date("H:i")}}</td>
+                            <td>{{schedule.noonEndTime|date("H:i")}}</td>
+                            <td>{{schedule.nightStartTime|date("H:i")}}</td>
+                            <td>{{schedule.nightEndTime|date("H:i")}}</td>
+                            <th><a href="{{ path("admin-schedule-edit", {id:schedule.id}) }}" type="button" class="btn btn-outline-primary">Modifier</a></th>
+                            <th><a href="{{ path("admin-schedule-delete", {id:schedule.id}) }}" type="button" class="btn btn-outline-danger">Supprimer</a></th>
+                        </tr>
+                    {% endfor %}
+                    </tbody> 
+                </table>
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %} 
