@@ -76,4 +76,38 @@ class CategoryController extends AbstractController
 
         return $this->redirectToRoute("admin-carte");
         }
+    #[Route('category/move/{id}/{move}', name: 'category-move')]
+        public function categoryMove(ManagerRegistry $doctrine, $move, $id){
+    
+            $em = $doctrine->getManager();
+            $categoryRepo = $doctrine->getRepository(Category::class);
+            $category = $categoryRepo->findOneBy(array('id'=>$id)); 
+    
+            if($category->getCategoryOrder()==null){
+                $category->setCategoryOrder(0);
+            }
+            if($move=='haut'){
+                $position=$category->getCategoryOrder();
+                if($position!=0){
+                    $position = $position-1;
+                }  
+            }
+            if($move=='bas'){
+                $position=$category->getCategoryOrder();
+                if($position!=0){
+                    $position = $position+1;
+                }
+            }
+            $categoryInvers=$categoryRepo->findOneBy(array('CategoryOrder'=>$position));
+            if($categoryInvers){
+                $categoryInvers->setCategoryOrder($category->getCategoryOrder());
+                $em->persist($categoryInvers);
+            }
+            $category->setCategoryOrder($position);
+            
+            $em->persist($category);
+            $em->flush();
+            
+            return $this->redirectToRoute('admin-carte');
+        }
 }
