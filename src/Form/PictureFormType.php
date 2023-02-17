@@ -41,10 +41,7 @@ class PictureFormType extends AbstractType
                 ],
             ])
             ->add('pictureOrder')
-            ->add('submit', SubmitType::class, [
-                'attr' => ['class' => 'modif'],
-                "label" => 'enregister'
-                ])
+
         ;
     }
 
