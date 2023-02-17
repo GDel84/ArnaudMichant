@@ -2,8 +2,11 @@
 
 ## Installation
 ### Project Dependencies
-To install all dependencies, run command : 
+- install php dependencies, run command : 
 `composer install`
+- install yarn packages : `yarn install`
+- install npm pacvkages : `npm install`
+- build js assets : `yarn dev build`
 
 ### Create database
 to create the database for the site use command : 
@@ -14,7 +17,7 @@ to create the database schema use command :
 `php .\bin\console doctrine:schema:create`
 
 ### Create the first admin user :
-`php .\bin\console createuser`
+`php .\bin\console Createuser`
 Input user email and choose a password
 
 ## Running
