@@ -23,7 +23,7 @@
                     <tbody>
                     {% for schedule in schedules %}
                         <tr>
-                            <td>{{ weekDay[schedule.week]}}</td>
+                            <td>{{weekDay[schedule.week]}}</td>
                             <td>{{schedule.noonStartTime|date("H:i")}}</td>
                             <td>{{schedule.noonEndTime|date("H:i")}}</td>
                             <td>{{schedule.nightStartTime|date("H:i")}}</td>
