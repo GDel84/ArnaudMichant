@@ -21,12 +21,12 @@ class DefaultController extends AbstractController
 
 {
     #[Route('/', name: 'accueil')]
-    public function accueil(ScheduleRepository $scheduleRepo, PhotoRepository $pictureRepo): Response
+    public function accueil(ScheduleRepository $scheduleRepo, PhotoRepository $picRepo): Response
     {
         return $this->render('accueil.html.twig', [
             'accueil_name' => 'PublicController',
             'schedules' => $scheduleRepo->findAll(),
-            'pictures' => $pictureRepo->findall(),
+            'pictures' => $picRepo->findBy(array(),array('pictureOrder'=>'asc')),
         ]);
     }
     #[Route('/carte', name: 'carte')]
