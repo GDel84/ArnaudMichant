@@ -146,12 +146,12 @@ class PictureController extends AbstractController
             }  
         }
         if($move=='bas'){
-            $position=$picture->getPictureOrder();
+            $position = $picture->getPictureOrder();
             if($position!=0){
                 $position = $position+1;
             }
         }
-        $pictureInvers=$picRepo->findOneBy(array('pictureOrder'=>$position));
+        $pictureInvers = $picRepo->findOneBy(array('pictureOrder'=>$position));
         if($pictureInvers){
             $pictureInvers->setPictureOrder($picture->getPictureOrder());
             $em->persist($pictureInvers);
