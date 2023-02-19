@@ -38,7 +38,7 @@ class SetupsController extends AbstractController
             $em->persist($setups);
             $em->flush(); 
 
-            return $this->redirectToRoute('admin');
+            return $this->redirectToRoute('admin-setups');
 
         }
         return $this->render('/admin/setups/admin-setups-create.html.twig', [
