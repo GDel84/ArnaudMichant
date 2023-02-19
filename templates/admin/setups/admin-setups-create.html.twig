@@ -3,9 +3,14 @@
 {% block body %}
 <div class="carte-form">
 <h1>cree les configuration</h1>
-            {{ form_start(form) }}
-            {{ form_widget(form) }}
+            {{ form_start(setupsCreateForm) }}
+            {{ form_row(setupsCreateForm.clefs, {
+            label:'nom de la configuration :'
+        }) }}
+        {{ form_row(setupsCreateForm.value, {
+            label:'Nombres de place :'
+        }) }}
                 <button type="submit" class="btn btn-primary">Valider</button>
-            {{ form_end(form) }}
+            {{ form_end(setupsCreateForm) }}
 </div>
 {% endblock %} 

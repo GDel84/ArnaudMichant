@@ -2,10 +2,15 @@
 
 {% block body %}
 <div class="carte-form">
-<h1>Modifier les horaires</h1>
-            {{ form_start(setupsEdit) }}
-            {{ form_widget(setupsEdit) }}
+<h1>Modifier les places</h1>
+            {{ form_start(setupsEditForm) }}
+            {{ form_row(setupsEditForm.clefs, {
+            label:'nom de la configuration :'
+        }) }}
+        {{ form_row(setupsEditForm.value, {
+            label:'Nombres de place :'
+        }) }}
                 <button type="submit" class="btn btn-primary">Valider</button>
-            {{ form_end(setupsEdit) }}
+            {{ form_end(setupsEditForm) }}
 </div>
 {% endblock %} 
