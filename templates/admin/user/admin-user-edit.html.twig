@@ -1,18 +1,35 @@
+{% extends 'admin/baseAdmin.html.twig' %}
+{% block body %}
+
 {% for flash_error in app.flashes('verify_email_error') %}
         <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
-    {% endfor %}
+{% endfor %}
+<div class="carte-form">
+<h1 class = "title">Modifier les abonnés</h1>
 
-<h1 class = "title1">Modifier les abonnés</h1>
-    <div class="deco">
   
 
     {{ form_start(user) }}
+        
         {{ form_row(user.Name, {
             label:'Nom:'
         }) }}
         {{ form_row(user.roles) }}
+        {{ form_row(user.email) }}
+        {{ form_row(user.firstName, {
+            label:'Nom:'
+        }) }}
+        {{ form_row(user.mentionsAllergene, {
+            label:'Allergène:'
+        }) }}
+        {{ form_row(user.nbCouverts, {
+            label:'Nombre de place habituel :'
+        }) }}
 
 
-    <button type="submit" class="btn-form">Modifier</button>
+
+    <button type="submit" class="btn btn-primary m-2">Modifier</button>
     {{ form_end(user) }}
 </div>
+
+{% endblock %} 
