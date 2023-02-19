@@ -106,7 +106,7 @@ class PictureController extends AbstractController
 
                 // updates the 'brochureFilename' property to store the PDF file name
                 // instead of its contents
-                $pic->setImage($newFilename);
+                $pic->setPicture($newFilename);
 
                 $em = $doctrine->getManager();
                 $em->persist($pic);
