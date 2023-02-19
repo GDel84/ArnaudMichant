@@ -1,5 +1,5 @@
-
-
+<div class="footerborder">
+</div>
 <div class="contacte">
     <h3>Nous Contacter</h3>
     <p>3 rue général De Gaulle<br>
@@ -21,7 +21,7 @@
                         {% if (schedule.noonStartTime|date("Hi") == 0) %}
                             Fermé
                         {% else %}
-                            {{schedule.noonStartTime|date("H:i")}}:{{schedule.noonEndTime|date("H:i")}}
+                            {{schedule.noonStartTime|date("H:i")}}/{{schedule.noonEndTime|date("H:i")}}
                          {% endif %}
                     </td>
                 {% endfor %}
@@ -32,22 +32,11 @@
                         {% if (schedule.nightStartTime|date("Hi") == 0) %}
                             Fermé
                         {% else %}
-                            {{schedule.nightStartTime|date("H:i")}}:{{schedule.nightEndTime|date("H:i")}}
+                            {{schedule.nightStartTime|date("H:i")}}/{{schedule.nightEndTime|date("H:i")}}
                         {% endif %}
                     </td>
                 {% endfor %}
             </tr>
-
-
-        {# {% for schedule in schedules %}
-            <tr>
-                <td>{{  weekDay[schedule.week]}}</td>
-                <td>{{schedule.noonStartTime|date("H:i")}}</td>
-                <td>{{schedule.noonEndTime|date("H:i")}}</td>
-                <td>{{schedule.nightStartTime|date("H:i")}}</td>
-                <td>{{schedule.nightEndTime|date("H:i")}}</td>
-            </tr>
-        {% endfor %} #}
     </table>
 </div>
 
