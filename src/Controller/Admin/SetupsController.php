@@ -18,7 +18,9 @@ class SetupsController extends AbstractController
     public function setups(ReservationsRepository $reservationRepo, SetupsRepository $setupsRepo): Response
     {
         return $this->render('/admin/setups/admin-setups.html.twig', [
-            'reservations' => $reservationRepo->findAll(),
+            'reservations' => $reservationRepo->findBy(
+                array(),
+                array('scheduledTime' => 'asc', 'scheduledTime' => 'desc')),
             'setups' => $setupsRepo->findAll(),            
         ]);
     }
@@ -40,7 +42,7 @@ class SetupsController extends AbstractController
 
         }
         return $this->render('/admin/setups/admin-setups-create.html.twig', [
-            'form' => $form->createView()
+            'setupsCreateForm' => $form->createView()
         ]);
     }
 
@@ -62,7 +64,7 @@ class SetupsController extends AbstractController
         }
 
         return $this->render('admin/setups/admin-setups-edit.html.twig', [
-            'setupsEdit' => $form->createView(),
+            'setupsEditForm' => $form->createView(),
         ]);
     }
 }
