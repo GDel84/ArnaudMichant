@@ -153,40 +153,20 @@
     height: auto;
     box-shadow: 0 10px 30px rgba(0,0,0,0.4);
   }
+ 
  /*------------Carte + form-CategoryProduct---------------*/
  
  .carte{
-  max-width: 70%;
-  margin: 0 auto;
-  padding: 50px 14px;
-  position: relative;
-  margin-top: 50px;
-  text-align: center;
   background-color:white;
 }
 .titleCarte{
   font-size: 4em;
-  margin-bottom: 2%;
   color: #8B5E3C;
 }
 .titleCategory{
   font-size:2em;
-  margin: 0;
   border-top: 5px outset #712E1E;
   color: #8B5E3C;
-}
-.descriptionCategory{
-  font-style: italic;
-}
-
-.titleProduct{
-  font-weight:bold;
-}
-.descriptionProduct{
-  font-weight: lighter;
-}
-.price{
-  font-weight:bold;
 }
 /*-------------Schedule-------------*/
 .title-schedule{

@@ -1,20 +1,20 @@
 {% extends 'admin/baseAdmin.html.twig' %}
 {% block body %}
-<div class="carte">
-<h1 class="titleCarte">La Carte</h1>
-    <a href="{{ path("admin-category-create") }}" type="button" class="btn btn-outline-success">
+<div class="carte w-75 p-3 text-center mx-auto my-4">
+<h1 class="titleCarte ">La Carte</h1>
+    <a href="{{ path("admin-category-create") }}" type="button" class="btn btn-outline-success mb-4">
         <i class="fa fa-circle-plus" ></i>
         Ajouter une categorie
     </a>
 {% for category in categorys %}
-      <p id="{{ category.id }}" class="titleCategory">{{ category.title }} 
+      <p id="{{ category.id }}" class="titleCategory pt-4">{{ category.title }} 
         <a href="{{ path("admin-category-edit", {id:category.id}) }}" type="button" class="btn btn-outline-primary">
             <i class="fa fa-pencil"></i>
         </a>
         <a href="{{ path("admin-category-delete", {id:category.id}) }}" type="button" class="btn btn-outline-danger">
             <i class="fa fa-trash-can"></i>
         </a></p>
-      <span class="descriptionCategory">{{ category.description }}</span>
+      <span class="font-weight-light">{{ category.description }}</span>
     <table class="table table-bordered">
         <thead> 
             <tr>
@@ -23,16 +23,16 @@
         <tbody> 
         {% for product in category.products %}
             <tr>
-                <td class="titleProduct">{{ product.title }}</td> 
-                <td class="descriptionProduct">{{ product.description }}</td>
-                <td class="price">{{ product.prices }}€</td>
+                <td class="font-weight-bold">{{ product.title }}</td> 
+                <td class="font-weight-light">{{ product.description }}</td>
+                <td class="font-weight-bold">{{ product.prices }}€</td>
                 <td><a href="{{ path("admin-product-edit", {id:product.id}) }}" type="button" class="btn btn-outline-primary">Modifier</a></td>
                 <td><a href="{{ path("admin-product-delete", {id:product.id}) }}" type="button" class="btn btn-outline-danger">Supprimer</a></td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-    <div style="right:0;">
+    <div style="">
         <a href="{{ path("admin-product-create", {category: category.id}) }}" class="btn btn-outline-success ajoutProduct">
             <i class="fa fa-circle-plus"></i>
             Ajouter un produit
