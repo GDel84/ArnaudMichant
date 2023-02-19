@@ -42,12 +42,9 @@ function getDate(){
     $('#selectPax').find('optgroup').remove();
     $('#selectPax').prop( "disabled", true );
     $('#Pax').prop( "hidden", true );
-
     checkForm();
-    console.log($('#selectPax').val())
-
-
     let dateselect = $("#scheduledDate" ).val();
+    
     $.ajax({
         url: "/getdate",
         type: "POST",
@@ -127,9 +124,7 @@ function getDispo(){
         data: {"date":$('#scheduledDate').val(), "time":$('#time-select').val()},
         dataType:'json',
         success: function (response) {
-            var placeDispo = response['dispo'];
-            console.log(placeDispo);
-            
+            var placeDispo = response['dispo'];            
             if(placeDispo === 0){
                 showError("Désolé nous sommes complet pour ce service");
                 
