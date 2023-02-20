@@ -44,13 +44,14 @@ function getDate(){
     $('#Pax').prop( "hidden", true );
     checkForm();
     let dateselect = $("#scheduledDate" ).val();
-    
+    //Recupere les horaires pour la date sélectionnée
     $.ajax({
         url: "/getdate",
         type: "POST",
         data: {"date": dateselect},
         dataType:'json',
         success: function (response) {
+            //découpage des tableaux pour obtenir uniquement les horaires
             var noonStartTime = response['noon']['start']['date'].slice(11,13);
             var noonEndTime = response['noon']['end']['date'].slice(11,13);
             var nightStartTime = response['night']['start']['date'].slice(11,13);
@@ -59,7 +60,7 @@ function getDate(){
             if(noonStartTime == '00' && noonEndTime == '00' && nightStartTime == '00' && nightEndTime == '00'){
                 showError("Le restaurant est fermer pour cette date, veillez selection une autre date.");
             }
-
+            //découpage des heures en quart d'heure si les var sont différentes de 00            
             if(noonStartTime != '00' && noonEndTime != '00'){
                 var noonTimes = [];
                 for (let i = parseInt(noonStartTime); i < parseInt(noonEndTime); i++) {
@@ -69,6 +70,7 @@ function getDate(){
                     noonTimes.push(i+':45');
                 }
                 noonTimes.push(response['noon']['end']['date'].slice(11,16));
+                //placer le résultat dans un optgroup 
                 $('#time-select').append($('<optgroup>', { label: 'Midi'}));
                 $.each(noonTimes, function (i, item) {
                     if(noonTimes.length != i+1){
@@ -100,7 +102,6 @@ function getDate(){
                     }
                 });
             }
-
             $('#labelTime').prop( "disabled", false )
             $('#labelTime').prop( "hidden", false );
                 
@@ -109,7 +110,7 @@ function getDate(){
 
         },
         error: function(error){
-            console.log("Something went wrong", error);
+            ("Something went wrong", error);
         }
     });
 }
@@ -117,7 +118,7 @@ function getDate(){
 function getDispo(){
     hideError();
     $('#selectPax').find('option').remove();
-
+    //Recupere le nombre de places disponibles pour le jour et l'heure choisie
     $.ajax({
         url: "/getdispo",
         type: "POST",
@@ -127,7 +128,7 @@ function getDispo(){
             var placeDispo = response['dispo'];            
             if(placeDispo === 0){
                 showError("Désolé nous sommes complet pour ce service");
-                
+            //affiche la partie nombre de couvert 
             }  else {
                 $('#Pax').prop( "hidden", false );
                 $('#selectPax').prop( "disabled", false );
@@ -139,6 +140,7 @@ function getDispo(){
             //    nbCouvert = {{user.nbcouverts|raw}};
             //{% endif %}
 
+            //boucle pour afficher le nombre de place restant 
             for (let i = 1; i <= placeDispo; i++) {
                 let option = '<option>';
                 $('#selectPax').append($(option, { 
@@ -151,7 +153,7 @@ function getDispo(){
             }
         },
         error: function(error){
-            console.log("Something went wrong", error);
+            ("Something went wrong", error);
         }
     });
 }

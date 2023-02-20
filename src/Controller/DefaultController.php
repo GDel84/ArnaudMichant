@@ -47,6 +47,7 @@ class DefaultController extends AbstractController
             'schedules' => $scheduleRepo->findAll(),
         ]);
     }
+    //Route d'appel du DOM pour récupérer un tableau d'horaire
     #[Route('/getdate', name: 'getdate', methods: ['POST','GET'])]
     public function getdate(ScheduleRepository $scheduleRepo, Request $request): Response
     {
@@ -60,12 +61,11 @@ class DefaultController extends AbstractController
             'noon'=>['start'=>$horaire->getNoonStartTime(),'end'=>$horaire->getNoonEndTime()],
             'night'=>['start'=>$horaire->getNightStartTime(), 'end'=>$horaire->getNightEndTime()] 
         ];
-
         return new JsonResponse($resp);
     }
-
+    //Route d'appel du DOM pour récupérer les places disponibles
     #[Route('/getdispo', name: 'getdispo', methods: ['POST','GET'])]
-    public function getdispo(SetupsRepository $SetupRepo, ManagerRegistry $doctrine, ReservationsRepository $ResaRepo, ScheduleRepository $scheduleRepo, Request $request): Response
+    public function getdispo(SetupsRepository $SetupRepo, ReservationsRepository $ResaRepo, ScheduleRepository $scheduleRepo, Request $request): Response
     {
         $formdate = $request->request->get('date');
         $formtime = $request->request->get('time');
@@ -89,37 +89,17 @@ class DefaultController extends AbstractController
             $end = $weekSchedule->getNightEndTime()->modify($formdate);
         }
 
-        //dump(sizeof(($result)));
         $nbresa = $ResaRepo->nbplace($start, $end);
-
         //recupere le nombre de place disponible dans le setups
         $place = $SetupRepo->findOneBy([
             'clefs'=>"place disponible"
         ]);
         $placeDispo = $place->getvalue();
-        
-        
         $nbplaceslibres = ($placeDispo - $nbresa[0]['totalcouverts']);
         
         $tableresult = ['dispo'=>$nbplaceslibres];  
               
-        dump($tableresult);
-
         return new JsonResponse($tableresult);
-    }
-    #[Route('/getplace', name: 'getplace', methods: ['POST','GET'])]
-    public function getplace(SetupsRepository $SetupRepo, ScheduleRepository $scheduleRepo, Request $request): Response
-    {
-        $place = $SetupRepo->findOneBy([
-            'clefs'=>"place disponible"
-        ]);
-        $placeDispo = $place->getvalue();
-
-        dump($placeDispo);
-        
-
-        return new JsonResponse($placeDispo);
-
     }
 
 }
