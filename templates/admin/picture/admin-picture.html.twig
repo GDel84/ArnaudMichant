@@ -14,10 +14,10 @@
                 <tr>
                 <td><img src={{asset('uploads/picture/' ~ picture.picture)}} width="100px" height="80px" class="photo"></td>
                 <td>{{picture.title}}</td>
-                <td><a  class="btn btn-outline-primary btn-sm m-auto" href="{{ path("admin-picture-move", {id:picture.id, move:'haut'} ) }}">
+                <td><a  class="btn btn-outline-warning btn-sm" href="{{ path("admin-picture-move", {id:picture.id, move:'haut'} ) }}">
                         <i class="fa fa-light fa-up-long"></i>
                     </a></td>
-                <td><a  class="btn btn-outline-primary btn-sm" href="{{ path("admin-picture-move", {id:picture.id, move:'bas'} ) }}">
+                <td><a  class="btn btn-outline-warning btn-sm" href="{{ path("admin-picture-move", {id:picture.id, move:'bas'} ) }}">
                         <i class="fa fa-light fa-down-long"></i>
                     </a></td>
                 <td><a href="{{ path("admin-picture-modifier", {id:picture.id} ) }}" class="btn btn-outline-primary btn-sm">

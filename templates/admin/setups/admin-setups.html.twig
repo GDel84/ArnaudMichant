@@ -18,7 +18,9 @@
                         <tr>
                         <td>{{setups.clefs}}</td>
                         <td>{{setups.value}}</td>
-                        <th><a href="{{ path("admin-setups-edit", {id:setups.id}) }}" type="button" class="btn btn-outline-primary">Modifier</a></th>
+                        <th><a href="{{ path("admin-setups-edit", {id:setups.id}) }}" type="button" class="btn btn-outline-primary">
+                            <i class="fa fa-pencil"></i>
+                            </a></th>
                         </tr>
                     {% endfor %}
                     </tbody> 
