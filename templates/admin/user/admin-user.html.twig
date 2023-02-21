@@ -25,8 +25,10 @@
                             <td>{{user.email}}</td>
                             <td>{{user.mentionsAllergene}}</td>
                             <td>{{user.nbCouverts}}</td>
-                            <td>{{user.roles [0]|default('')|replace({'ROLE_ADMIN': 'Administrateur', 'ROLE_USER': 'Client'})}}</td>
-                            <td><a href="{{ path("admin-user-edit", {id:user.id}) }}" type="button" class="btn btn-outline-primary">Modifier</a></td>
+                            <td>{{user.roles [0]|default('')|replace({'ROLE_ADMIN': 'Admin', 'ROLE_USER': 'Client'})}}</td>
+                            <td><a href="{{ path("admin-user-edit", {id:user.id}) }}" type="button" class="btn btn-outline-primary">
+                                    <i class="fa fa-pencil"></i>
+                                </a></td>
                         </tr>
                     {% endfor %}
                     </tbody>

@@ -24,7 +24,6 @@ class DefaultController extends AbstractController
     public function accueil(ScheduleRepository $scheduleRepo, PhotoRepository $picRepo): Response
     {
         return $this->render('accueil.html.twig', [
-            'accueil_name' => 'PublicController',
             'schedules' => $scheduleRepo->findAll(),
             'pictures' => $picRepo->findBy(array(),array('pictureOrder'=>'asc')),
         ]);
@@ -33,7 +32,6 @@ class DefaultController extends AbstractController
     public function contacter(ScheduleRepository $scheduleRepo, CategoryRepository $categoryRepo): Response
     {
         return $this->render('carte.html.twig', [
-            'carte_name' => 'PublicController',
             'schedules' => $scheduleRepo->findAll(),
             'categorys' => $categoryRepo->findBy(array(),array('CategoryOrder'=>'asc')),
         ]);
@@ -44,6 +42,13 @@ class DefaultController extends AbstractController
         
         return $this->render('reservation.html.twig', [
             'reservation_name' => 'PublicController',
+            'schedules' => $scheduleRepo->findAll(),
+        ]);
+    }
+    #[Route('/mentionslegales', name: 'mentions-legales')]
+    public function mentionsLegale(ScheduleRepository $scheduleRepo, PhotoRepository $picRepo): Response
+    {
+        return $this->render('mentionLegale.html.twig', [
             'schedules' => $scheduleRepo->findAll(),
         ]);
     }

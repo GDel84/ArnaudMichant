@@ -1,17 +1,17 @@
 {% extends 'admin/baseAdmin.html.twig' %}
 {% block body %}
 <div class="carte w-75 p-3 text-center mx-auto my-4">
-<h1 class="titleCarte ">La Carte</h1>
-    <a href="{{ path("admin-category-create") }}" type="button" class="btn btn-outline-success mb-4">
+<h1 class="titleCarte">La Carte</h1>
+    <a href="{{ path("admin-category-create") }}" type="button" class="btn btn-outline-success mb-4 btn-sm ">
         <i class="fa fa-circle-plus" ></i>
         Ajouter une categorie
     </a>
 {% for category in categorys %}
       <p id="{{ category.id }}" class="titleCategory pt-4">{{ category.title }} 
-        <a href="{{ path("admin-category-edit", {id:category.id}) }}" type="button" class="btn btn-outline-primary">
+        <a href="{{ path("admin-category-edit", {id:category.id}) }}" type="button" class="btn btn-outline-primary btn-sm ">
             <i class="fa fa-pencil"></i>
         </a>
-        <a href="{{ path("admin-category-delete", {id:category.id}) }}" type="button" class="btn btn-outline-danger">
+        <a href="{{ path("admin-category-delete", {id:category.id}) }}" type="button" class="btn btn-outline-danger btn-sm ">
             <i class="fa fa-trash-can"></i>
         </a></p>
       <span class="font-weight-light">{{ category.description }}</span>
@@ -26,8 +26,12 @@
                 <td class="font-weight-bold">{{ product.title }}</td> 
                 <td class="font-weight-light">{{ product.description }}</td>
                 <td class="font-weight-bold">{{ product.prices }}€</td>
-                <td><a href="{{ path("admin-product-edit", {id:product.id}) }}" type="button" class="btn btn-outline-primary">Modifier</a></td>
-                <td><a href="{{ path("admin-product-delete", {id:product.id}) }}" type="button" class="btn btn-outline-danger">Supprimer</a></td>
+                <td><a href="{{ path("admin-product-edit", {id:product.id}) }}" type="button" class="btn btn-outline-primary">
+                    <i class="fa fa-thin fa-file-pen"></i>
+                </a></td>
+                <td><a href="{{ path("admin-product-delete", {id:product.id}) }}" type="button" class="btn btn-outline-danger">
+                    <i class="fa fa-trash-can"></i>
+                </a></td>
             </tr>
         {% endfor %}
         </tbody>

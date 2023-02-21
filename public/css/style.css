@@ -580,7 +580,7 @@ h2{
 @media screen and (max-width: 1000px) {
   .footer{
     font-size: 1em;
-    margin-top: 15%;
+    margin-top: 18%;
     margin-left: 12%;
   }
   h2{
@@ -603,12 +603,14 @@ h2{
   .footer{
     margin-left:5%;
     font-size: 0.8em;
+    margin-top: 22%;
   }
 }
 @media screen and (max-width: 600px) {
   .footer{
-    margin-left: 0;
+    margin-left: 3%;
     font-size: 0.8em;
+    margin-top: 25%;
   }
 }
 @media screen and (max-width: 550px) {
@@ -620,8 +622,9 @@ h2{
     font-size: 1.5em;
   }
   .footer{
-    margin-top: 30%;
+    margin-top: 33%;
     font-size: 0.7em;
+    margin-left: 0;
   }
 }
 @media screen and (max-width: 400px) {
@@ -629,10 +632,16 @@ h2{
     font-size: 1em;
   }
   .footer{
-    margin-top: 35%;
-    font-size: 0.5em;
+    margin-top: 40%;
+    font-size: 0.4em;
+    margin-left: 3%;
   }
   
+}
+@media screen and (max-width: 350px) {
+  .footer{
+    margin-left: 0;
+  }
 }
 @media screen and (max-width: 300px) {
   .contacte{
@@ -640,8 +649,9 @@ h2{
   }
 
   .footer{
-    margin-top: 40%;
+    margin-top: 50%;
     font-size: 0.35em;
+    margin-left: 0;
   }
   h2{
     font-size: 1em;
